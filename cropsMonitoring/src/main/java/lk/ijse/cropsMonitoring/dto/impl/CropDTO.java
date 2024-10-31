@@ -14,12 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CropDTO  implements SuperDTO, CropResponse {
-    private String code;
-    private String name;
-    private Point location;
-    private Double size_of_Field;
-    private List<String> crops;
-    private List<String> staff;
-    private Long image1;
-    private Long image2;
+    private String cropCode;
+    private String cropCommonName;
+    private String cropScientificName;
+    private Long cropImage;
+    private String category;
+    private String cropSeason;
+    private String fieldCode;
 }

@@ -1,4 +1,9 @@
 package lk.ijse.cropsMonitoring.dao;
 
-public interface StaffDAO {
+import lk.ijse.cropsMonitoring.entity.StaffEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface StaffDAO extends JpaRepository<StaffEntity,String> {
 }

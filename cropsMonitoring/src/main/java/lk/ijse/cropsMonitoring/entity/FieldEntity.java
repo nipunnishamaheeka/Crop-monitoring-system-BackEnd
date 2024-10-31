@@ -12,7 +12,7 @@ import org.springframework.data.geo.Point;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "Field")
+@Table(name = "field")
 public class FieldEntity  implements SuperEntity{
     @Id
     private String code;

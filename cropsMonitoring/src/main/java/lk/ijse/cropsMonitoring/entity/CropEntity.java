@@ -17,14 +17,21 @@ import java.util.List;
 public class CropEntity implements SuperEntity {
 
     @Id
+    @Column(name = "crop_code")
     private String cropCode;
+
     private String cropCommonName;
+
     private String cropScientificName;
+
+    @Column(name = "c_image", columnDefinition = "LONGTEXT")
     private Long cropImage;
+
     private String category;
     private String cropSeason;
 
-    @ManyToOne
-    private FieldEntity field;
+//    @ManyToOne
+//    @JoinColumn(name = "field_code")
+//    private FieldEntity field;
 
 }

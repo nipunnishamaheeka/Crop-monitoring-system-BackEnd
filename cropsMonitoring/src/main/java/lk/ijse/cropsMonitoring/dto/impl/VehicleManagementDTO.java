@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class VehicleManagementDTO implements SuperDTO, VehicleResponse {
     private String vehicleCode;
-    private String vehicleMainNumber;
+    private String licensePlateNo;
     private String vehicleCategory;
     private String fuelType;
-    private String type;
-    private String allocatedStaffMemberId;
+    private String status;
+
     private String remarks;
+    private String staffId;
+
 }

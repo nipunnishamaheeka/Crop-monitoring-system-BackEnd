@@ -19,6 +19,6 @@ public class FieldDTO   implements SuperDTO, FieldResponse {
     private Double size_of_Field;
     private List<String> crops;
     private List<String> staff;
-    private Long image1;
-    private Long image2;
+    private String fieldImage1;
+    private String fieldImage2;
 }

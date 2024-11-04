@@ -1,12 +1,12 @@
 package lk.ijse.cropsMonitoring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.geo.Point;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,16 +15,27 @@ import org.springframework.data.geo.Point;
 @Table(name = "field")
 public class FieldEntity  implements SuperEntity{
     @Id
+    @Column(name = "field_code", nullable = false)
     private String code;
     private String name;
     private Point location;
     private Double size_of_Field;
-    //    @ElementCollection
-//    private List<String> crops;
-//    @ElementCollection
-//    private List<String> staff;
-    private String crops;
-    private String staff;
-    private Long image1;
-    private Long image2;
+
+    @Column(name = "f_image1", columnDefinition = "LONGTEXT")
+    private String fieldImage1;
+    @Column(name = "f_image2", columnDefinition = "LONGTEXT")
+    private String fieldImage2;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "crop_code")
+//    private CropEntity crops;
+//
+//    @ManyToMany
+//    @JoinTable(
+//            name = "field_staff",
+//            joinColumns = @JoinColumn(name = "field_code"),
+//            inverseJoinColumns = @JoinColumn(name = "staff_id")
+//    )
+//    private List<StaffEntity> staffList;
+
 }

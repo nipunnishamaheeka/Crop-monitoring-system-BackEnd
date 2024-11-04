@@ -11,14 +11,23 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "user")
 public class UserEntity implements SuperEntity{
+
     @Id
-    private String userName;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    @Column(name = "role")
+    private Role role;
 
-    public enum UserRole {
+//    @OneToOne
+//    @JoinColumn(name = "staff_id")
+//    private StaffEntity staff;
+
+    public enum Role {
         MANAGER, ADMINISTRATIVE, SCIENTIST, OTHER
     }
 

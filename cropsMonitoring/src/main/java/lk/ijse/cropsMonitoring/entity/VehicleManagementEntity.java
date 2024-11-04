@@ -1,9 +1,6 @@
 package lk.ijse.cropsMonitoring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,14 +13,25 @@ import lombok.NoArgsConstructor;
 
 public class VehicleManagementEntity implements SuperEntity{
     @Id
+    @Column(name = "v_code")
     private String vehicleCode;
-    private String vehicleMainNumber;
-    private String vehicleCategory;
-    private String fuelType;
-    private String type;
 
-    @ManyToOne
-    private StaffEntity allocatedStaffMember;
+    @Column(name = "license_plate_no")
+    private String licensePlateNo;
+
+    @Column(name = "category")
+    private String vehicleCategory;
+
+    @Column(name = "fuel_type")
+    private String fuelType;
+
+    private String status;
 
     private String remarks;
+
+//    @ManyToOne
+//    @JoinColumn(name = "staff_id")
+//    private StaffEntity staff;
+
+
 }

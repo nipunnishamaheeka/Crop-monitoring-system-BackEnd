@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserDTO implements SuperDTO {
-    private String userName;
+    private String email;
     private String password;
+
+    private String staffId;
     private UserRole role;
 
     public enum UserRole {

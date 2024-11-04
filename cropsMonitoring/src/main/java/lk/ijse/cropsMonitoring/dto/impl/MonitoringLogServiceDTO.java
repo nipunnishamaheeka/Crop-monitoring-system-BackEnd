@@ -13,11 +13,16 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class MonitoringLogServiceDTO implements SuperDTO, MonitoringLogServiceResponse {
+
     private String logCode;
     private Date logDate;
-    private String observation;
-    private Long generalImage;
-    private List<String> tasks;
-    private String cropCode;
-    private List<String> staffIds;
+    private String monitoringDetails;
+
+    private String generalImage;
+
+    private String field;
+    private String staffId;
+    private String crops;
+
+
 }

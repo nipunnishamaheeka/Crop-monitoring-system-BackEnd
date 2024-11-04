@@ -17,15 +17,24 @@ public class MonitoringLogServiceEntity implements SuperEntity {
     @Id
     private String logCode;
     private Date logDate;
-    private String observation;
-    private Long generalImage;
 
-    @ElementCollection
-    private List<String> tasks;
+    @Column(name = "l_details")
+    private String monitoringDetails;
 
-    @ManyToOne
-    private CropEntity crop;
+    @Column(name = "g_image", columnDefinition = "LONGTEXT")
+    private String generalImage;
 
-    @ManyToMany
-    private List<StaffEntity> staff;
+//    @ManyToOne
+//    @JoinColumn(name = "field_code")
+//    private FieldEntity field;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "staff_id")
+//    private StaffEntity staff;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "crop_code")
+//    private CropEntity crops;
+
+
 }

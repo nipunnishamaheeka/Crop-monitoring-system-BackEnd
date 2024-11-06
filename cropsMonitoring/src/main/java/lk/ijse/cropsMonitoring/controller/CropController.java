@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/crops")
+@RequestMapping(value = "/api/v1/crops", method = RequestMethod.OPTIONS)
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 public class CropController {
@@ -27,8 +27,6 @@ public class CropController {
     private final CropService cropService;
 
     private static final Logger logger = LoggerFactory.getLogger(CropController.class);
-
-
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<String> saveCrops(@RequestBody CropDTO cropDTO) {

@@ -25,8 +25,10 @@ public class CropServiceImpl implements CropService {
 
     @Override
     public void save(CropDTO cropDTO) {
-        cropDTO.setCropCode(AppUtil.createCropId());
+//        cropDTO.setCropCode(AppUtil.createCropId());
+        cropDTO.setCropCode(generateCropID());
         CropEntity entity = cropDAO.save(mapping.toCropsEntity(cropDTO));
+        System.out.println("entity = " + entity);
         if (entity.getCropCode() == null) {
             throw new DataPersistFailedException("Failed To Save");
         }
@@ -70,5 +72,20 @@ public class CropServiceImpl implements CropService {
     @Override
     public List<CropDTO> getAll() {
         return mapping.toCropsDtoList(cropDAO.findAll());
+    }
+    private String generateCropID() {
+        if (cropDAO.count() == 0) {
+            return "C001";
+        } else {
+            String lastId = cropDAO.findAll().get(cropDAO.findAll().size() - 1).getCropCode();
+            int newId = Integer.parseInt(lastId.substring(1)) + 1;
+            if (newId < 10) {
+                return "C00" + newId;
+            } else if (newId < 100) {
+                return "C0" + newId;
+            } else {
+                return "C" + newId;
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ public class CropEntity implements SuperEntity {
     private String cropCode;
 
     private String cropCommonName;
-
+    
     private String cropScientificName;
 
     @Column(name = "c_image", columnDefinition = "LONGTEXT")

@@ -20,5 +20,4 @@ public class CropDTO  implements SuperDTO, CropResponse {
     private String cropImage;
     private String category;
     private String cropSeason;
-    private String fieldCode;
 }

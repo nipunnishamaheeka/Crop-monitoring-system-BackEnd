@@ -18,17 +18,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/crops")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class CropController {
     @Autowired
     private final CropService cropService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Void> saveCrops(@RequestBody CropDTO cropDTO) {
         if (cropDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }else {
             try{
+
                 cropService.save(cropDTO);
+                System.out.println("cropDTO = " + cropDTO);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             }catch (DataPersistFailedException e){
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -63,6 +66,7 @@ public class CropController {
 
     @DeleteMapping(value = "/{crop_code}")
     public ResponseEntity<Void> deleteCrops(@PathVariable("crop_code") String id) {
+        System.out.println("Deleting crop with ID: " + id);
         try {
             cropService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -72,5 +76,6 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 }

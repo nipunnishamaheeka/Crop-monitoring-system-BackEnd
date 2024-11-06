@@ -6,8 +6,9 @@ import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.entity.CropEntity;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.service.CropService;
-import lk.ijse.cropsMonitoring.util.AppUtil;
 import lk.ijse.cropsMonitoring.util.Mapping;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,14 @@ public class CropServiceImpl implements CropService {
 
     @Autowired
     private Mapping mapping;
+    private static final Logger logger = LoggerFactory.getLogger(CropServiceImpl.class);
 
     @Override
     public void save(CropDTO cropDTO) {
-//        cropDTO.setCropCode(AppUtil.createCropId());
+
         cropDTO.setCropCode(generateCropID());
         CropEntity entity = cropDAO.save(mapping.toCropsEntity(cropDTO));
+        logger.info("Saved crop entity: {}", entity);
         System.out.println("entity = " + entity);
         if (entity.getCropCode() == null) {
             throw new DataPersistFailedException("Failed To Save");
@@ -43,7 +46,7 @@ public class CropServiceImpl implements CropService {
             cropEntity.get().setCategory(cropDTO.getCategory());
             cropEntity.get().setCropCommonName(cropDTO.getCropCommonName());
             cropEntity.get().setCropScientificName(cropDTO.getCropScientificName());
-//            cropEntity.get().setFieldCode(cropDTO.getFieldCode());
+
 
         }
         throw new DataPersistFailedException("Failed To Update");
@@ -53,7 +56,7 @@ public class CropServiceImpl implements CropService {
     public void delete(String id) {
         if (cropDAO.existsById(id)) {
             cropDAO.deleteById(id);
-        }else {
+        } else {
             throw new DataPersistFailedException("Failed To Delete");
         }
     }
@@ -61,10 +64,10 @@ public class CropServiceImpl implements CropService {
     @Override
     public CropResponse getSelectedCrops(String id) {
         CropEntity cropEntity = cropDAO.findById(id).orElse(null);
-        if (cropEntity != null){
+        if (cropEntity != null) {
             return mapping.toCropsDto(cropEntity);
 
-        }else {
+        } else {
             throw new DataPersistFailedException("Failed To get");
         }
     }
@@ -73,19 +76,25 @@ public class CropServiceImpl implements CropService {
     public List<CropDTO> getAll() {
         return mapping.toCropsDtoList(cropDAO.findAll());
     }
+
     private String generateCropID() {
-        if (cropDAO.count() == 0) {
+        long cropCount = cropDAO.count();
+        if (cropCount == 0) {
             return "C001";
         } else {
-            String lastId = cropDAO.findAll().get(cropDAO.findAll().size() - 1).getCropCode();
-            int newId = Integer.parseInt(lastId.substring(1)) + 1;
-            if (newId < 10) {
-                return "C00" + newId;
-            } else if (newId < 100) {
-                return "C0" + newId;
-            } else {
-                return "C" + newId;
+
+            String lastId = cropDAO.findLastCropCode();
+            if (lastId != null && lastId.startsWith("C")) {
+
+                try {
+                    int newId = Integer.parseInt(lastId.substring(1)) + 1;
+                    return String.format("C%03d", newId);
+                } catch (NumberFormatException e) {
+
+                    logger.error("Failed to parse crop ID: {}", lastId, e);
+                }
             }
+            return "C001";
         }
     }
 }

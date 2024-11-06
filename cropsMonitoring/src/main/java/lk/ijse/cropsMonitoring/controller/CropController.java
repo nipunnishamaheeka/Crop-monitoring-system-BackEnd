@@ -5,7 +5,10 @@ import lk.ijse.cropsMonitoring.customObj.CropResponse;
 import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.service.CropService;
+import lk.ijse.cropsMonitoring.service.impl.CropServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,21 +26,25 @@ public class CropController {
     @Autowired
     private final CropService cropService;
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Void> saveCrops(@RequestBody CropDTO cropDTO) {
-        if (cropDTO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else {
-            try{
+    private static final Logger logger = LoggerFactory.getLogger(CropController.class);
 
-                cropService.save(cropDTO);
-                System.out.println("cropDTO = " + cropDTO);
-                return new ResponseEntity<>(HttpStatus.CREATED);
-            }catch (DataPersistFailedException e){
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }catch (Exception e){
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+
+
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<String> saveCrops(@RequestBody CropDTO cropDTO) {
+        if (cropDTO == null) {
+            return new ResponseEntity<>("Invalid crop data", HttpStatus.BAD_REQUEST);
+        }
+        try {
+            cropService.save(cropDTO);
+            logger.info("Crop saved: {}", cropDTO);
+            return new ResponseEntity<>("Crop created successfully", HttpStatus.CREATED);
+        } catch (DataPersistFailedException e) {
+            logger.error("Data persistence failed: {}", e.getMessage());
+            return new ResponseEntity<>("Failed to save crop", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            logger.error("Unexpected error occurred: {}", e.getMessage());
+            return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

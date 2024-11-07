@@ -46,13 +46,16 @@ public class CropController {
         }
     }
 
-    @PatchMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateCrops(@PathVariable("crop_code") String id, @RequestBody CropDTO cropDTO) {
         try {
             cropService.update(id, cropDTO);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+            return new ResponseEntity<>("Crop updated successfully", HttpStatus.OK);
+
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataPersistFailedException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Crop not found", HttpStatus.NOT_FOUND);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

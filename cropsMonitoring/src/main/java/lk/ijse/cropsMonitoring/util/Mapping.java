@@ -2,6 +2,7 @@ package lk.ijse.cropsMonitoring.util;
 
 import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.entity.CropEntity;
+import lk.ijse.cropsMonitoring.entity.FieldEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,4 +28,7 @@ public class Mapping {
     }
 
 
+    public FieldEntity toFieldEntity(String dto) {
+        return modelMapper.map(dto, FieldEntity.class);
+    }
 }

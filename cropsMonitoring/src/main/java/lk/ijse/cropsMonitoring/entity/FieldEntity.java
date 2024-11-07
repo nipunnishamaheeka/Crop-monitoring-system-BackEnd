@@ -25,8 +25,11 @@ public class FieldEntity  implements SuperEntity{
     private String fieldImage1;
     @Column(name = "f_image2", columnDefinition = "LONGTEXT")
     private String fieldImage2;
-//
-//    @ManyToOne
+
+    @OneToMany(mappedBy = "field")
+    private List<CropEntity> crops;  // Changed to List<CropEntity>
+
+//    @OneToMany(mappedBy = "field")
 //    @JoinColumn(name = "crop_code")
 //    private CropEntity crops;
 //

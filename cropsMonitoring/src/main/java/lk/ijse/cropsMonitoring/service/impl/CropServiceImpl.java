@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +39,7 @@ public class CropServiceImpl implements CropService {
     }
 
     @Override
+    @Transactional
     public void update(String id, CropDTO cropDTO) {
         Optional<CropEntity> cropEntity = cropDAO.findById(id);
         if (cropEntity.isPresent()) {
@@ -46,10 +48,12 @@ public class CropServiceImpl implements CropService {
             cropEntity.get().setCategory(cropDTO.getCategory());
             cropEntity.get().setCropCommonName(cropDTO.getCropCommonName());
             cropEntity.get().setCropScientificName(cropDTO.getCropScientificName());
+            cropEntity.get().setField(mapping.toFieldEntity(cropDTO.getFieldCode()));
 
 
-        }
+        }else {
         throw new DataPersistFailedException("Failed To Update");
+        }
     }
 
     @Override

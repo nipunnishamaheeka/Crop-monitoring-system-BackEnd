@@ -1,6 +1,7 @@
 package lk.ijse.cropsMonitoring.service.impl;
 
 import lk.ijse.cropsMonitoring.customObj.CropResponse;
+import lk.ijse.cropsMonitoring.customObj.VehicleResponse;
 import lk.ijse.cropsMonitoring.dao.VehicleManagementDAO;
 import lk.ijse.cropsMonitoring.dto.impl.VehicleManagementDTO;
 import lk.ijse.cropsMonitoring.entity.CropEntity;
@@ -55,17 +56,27 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void delete(String id) {
-
+        if (vehicleManagementDAO.existsById(id)) {
+            vehicleManagementDAO.deleteById(id);
+        } else {
+            throw new DataPersistFailedException("Failed To Delete");
+        }
     }
 
     @Override
-    public CropResponse getSelectedVehicle(String id) {
-        return null;
+    public VehicleResponse getSelectedVehicle(String id) {
+
+        VehicleManagementEntity vehicleManagementEntity = vehicleManagementDAO.findById(id).orElse(null);
+        if (vehicleManagementEntity == null) {
+            return mapping.toVehicleDto(vehicleManagementEntity);
+        }else {
+            throw new DataPersistFailedException("Failed To Get");
+        }
     }
 
     @Override
     public List<VehicleManagementDTO> getAll() {
-        return List.of();
+        return mapping.toVehicleDtoList(vehicleManagementDAO.findAll());
     }
 
     private String generateVehicleID() {

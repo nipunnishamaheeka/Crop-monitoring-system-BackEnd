@@ -62,13 +62,13 @@ public class CropController {
     }
 
     @GetMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CropResponse getNote(@PathVariable("crop_code") String crop_code) {
-        CropResponse note = cropService.getSelectedCrops(crop_code);
-        return note==null? new CropErrorResponse() :note;
+    public CropResponse getCrop(@PathVariable("crop_code") String crop_code) {
+        CropResponse crop = cropService.getSelectedCrops(crop_code);
+        return crop==null? new CropErrorResponse() :crop;
     }
 
     @GetMapping(value = "allCrops", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CropDTO> getAllNotes() {
+    public List<CropDTO> getAllVehicles() {
         return cropService.getAll();
     }
 

@@ -1,5 +1,9 @@
 package lk.ijse.cropsMonitoring.controller;
 
+import lk.ijse.cropsMonitoring.customObj.CropErrorResponse;
+import lk.ijse.cropsMonitoring.customObj.CropResponse;
+import lk.ijse.cropsMonitoring.customObj.VehicleErrorResponse;
+import lk.ijse.cropsMonitoring.customObj.VehicleResponse;
 import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.dto.impl.VehicleManagementDTO;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
@@ -12,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/vehicle", method = RequestMethod.OPTIONS)
@@ -56,4 +62,27 @@ public class VehicleManagementController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping(value = "/{v_code}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public VehicleResponse getVehicle(@PathVariable("v_code") String v_code) {
+       VehicleResponse vehicle = vehicleService.getSelectedVehicle(v_code);
+        return vehicle == null? new VehicleErrorResponse() :vehicle;
+    }
+    @GetMapping(value = "allVehicles", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<VehicleManagementDTO> getAllVehicles() {
+        return vehicleService.getAll();
+    }
+
+    @DeleteMapping(value = "/{v_code}")
+    public ResponseEntity<Void> deleteVehicles(@PathVariable("v_code") String id) {
+        System.out.println("Deleting vehicle with ID: " + id);
+        try {
+            vehicleService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (DataPersistFailedException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

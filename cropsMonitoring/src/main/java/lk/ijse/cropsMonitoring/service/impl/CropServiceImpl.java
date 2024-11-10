@@ -48,7 +48,7 @@ public class CropServiceImpl implements CropService {
             cropEntity.get().setCategory(cropDTO.getCategory());
             cropEntity.get().setCropCommonName(cropDTO.getCropCommonName());
             cropEntity.get().setCropScientificName(cropDTO.getCropScientificName());
-            cropEntity.get().setField(mapping.toFieldEntity(cropDTO.getFieldCode()));
+          //  cropEntity.get().setField(mapping.toFieldEntity(cropDTO.getFieldCode()));
 
 
         }else {

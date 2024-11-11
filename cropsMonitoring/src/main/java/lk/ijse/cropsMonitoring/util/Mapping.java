@@ -1,9 +1,11 @@
 package lk.ijse.cropsMonitoring.util;
 
 import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
+import lk.ijse.cropsMonitoring.dto.impl.EquipmentDTO;
 import lk.ijse.cropsMonitoring.dto.impl.FieldDTO;
 import lk.ijse.cropsMonitoring.dto.impl.VehicleManagementDTO;
 import lk.ijse.cropsMonitoring.entity.CropEntity;
+import lk.ijse.cropsMonitoring.entity.EquipmentEntity;
 import lk.ijse.cropsMonitoring.entity.FieldEntity;
 import lk.ijse.cropsMonitoring.entity.VehicleManagementEntity;
 import org.modelmapper.ModelMapper;
@@ -51,6 +53,18 @@ public VehicleManagementDTO toVehicleDto(VehicleManagementEntity entity) {
     }
 
     public List<FieldDTO> toFieldDtoList(List<FieldEntity> entityList) {
+        return modelMapper.map(entityList, List.class);
+    }
+
+    //Equipment
+    public EquipmentEntity toEquipmentEntity(EquipmentDTO dto) {
+        return modelMapper.map(dto, EquipmentEntity.class);
+    }
+    public EquipmentDTO toEquipmentDto(EquipmentEntity entity) {
+        return modelMapper.map(entity, EquipmentDTO.class);
+    }
+
+    public List<EquipmentDTO> toEquipmentDtoList(List<EquipmentEntity> entityList) {
         return modelMapper.map(entityList, List.class);
     }
 }

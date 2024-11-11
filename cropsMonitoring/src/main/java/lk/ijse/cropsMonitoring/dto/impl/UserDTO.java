@@ -10,12 +10,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class UserDTO implements SuperDTO {
     private String email;
-    private String password;
-
-    private String staffId;
-    private UserRole role;
-
-    public enum UserRole {
-        MANAGER, ADMINISTRATIVE, SCIENTIST, OTHER
-    }
+    private String role;
 }

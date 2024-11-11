@@ -29,9 +29,10 @@ public class VehicleManagementEntity implements SuperEntity{
 
     private String remarks;
 
-//    @ManyToOne
-//    @JoinColumn(name = "staff_id")
-//    private StaffEntity staff;
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private StaffEntity allocatedStaffMember;
+
 
 
 }

@@ -18,19 +18,20 @@ public class StaffDTO implements SuperDTO, StaffResponse {
     private String firstName;
     private String lastName;
     private String designation;
-    private Gender gender;
+    private String gender;
+    private Date joinedDate;
     private Date dob;
     private String addressLine01;
     private String addressLine02;
     private String addressLine03;
-    private String contact;
+    private String addressLine04;
+    private String addressLine05;
+    private String contactNo;
     private String email;
-    private Date joinedDate;
+    private String role;
 
     private List<String> fieldCodes;
-    private List<String> vehicles;
+    private List<String> vehicleCodes;
 
-    public enum Gender {
-        MALE, FEMALE
-    }
+
 }

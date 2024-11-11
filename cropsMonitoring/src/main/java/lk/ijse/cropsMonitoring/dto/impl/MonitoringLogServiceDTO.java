@@ -20,9 +20,9 @@ public class MonitoringLogServiceDTO implements SuperDTO, MonitoringLogServiceRe
 
     private String generalImage;
 
-    private String field;
-    private String staffId;
-    private String crops;
+    private List<String> fieldCodes;  // List of Field codes relevant to the log
+    private List<String> cropCodes;   // List of Crop codes relevant to the log
+    private List<String> staffIds;
 
 
 }

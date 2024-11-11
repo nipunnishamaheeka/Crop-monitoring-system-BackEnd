@@ -18,27 +18,33 @@ public class FieldEntity  implements SuperEntity{
     @Column(name = "field_code", nullable = false)
     private String code;
     private String name;
-    private Point location;
+
+    @Column(columnDefinition = "Point")
+    private String location;
     private Double size_of_Field;
 
-    @Column(name = "f_image1", columnDefinition = "LONGTEXT")
+    @OneToMany(mappedBy = "field")
+    private List<CropEntity> crops;
+
+    @ManyToMany
+    @JoinTable(
+            name = "field_staff",
+            joinColumns = @JoinColumn(name = "field_code"),
+            inverseJoinColumns = @JoinColumn(name = "staff_id")
+    )
+    private List<StaffEntity> staff;
+
+    @Lob
     private String fieldImage1;
-    @Column(name = "f_image2", columnDefinition = "LONGTEXT")
+
+    @Lob
     private String fieldImage2;
 
-    @OneToMany(mappedBy = "field")
-    private List<CropEntity> crops;  // Changed to List<CropEntity>
+//    @Column(name = "f_image1", columnDefinition = "LONGTEXT")
+//    private String fieldImage1;
+//    @Column(name = "f_image2", columnDefinition = "LONGTEXT")
+//    private String fieldImage2;
 
-//    @OneToMany(mappedBy = "field")
-//    @JoinColumn(name = "crop_code")
-//    private CropEntity crops;
-//
-//    @ManyToMany
-//    @JoinTable(
-//            name = "field_staff",
-//            joinColumns = @JoinColumn(name = "field_code"),
-//            inverseJoinColumns = @JoinColumn(name = "staff_id")
-//    )
-//    private List<StaffEntity> staffList;
+
 
 }

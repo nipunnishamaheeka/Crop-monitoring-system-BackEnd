@@ -15,10 +15,10 @@ import java.util.List;
 public class FieldDTO   implements SuperDTO, FieldResponse {
     private String code;
     private String name;
-    private Point location;
+    private String location;
     private Double size_of_Field;
-    private List<String> crops;
-    private List<String> staff;
+    private List<String> cropCodes;
+    private List<String> staffIds;
     private String fieldImage1;
     private String fieldImage2;
 }

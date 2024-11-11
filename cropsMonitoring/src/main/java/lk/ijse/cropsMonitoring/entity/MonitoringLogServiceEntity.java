@@ -16,25 +16,23 @@ import java.util.List;
 public class MonitoringLogServiceEntity implements SuperEntity {
     @Id
     private String logCode;
+    @Temporal(TemporalType.DATE)
     private Date logDate;
 
     @Column(name = "l_details")
     private String monitoringDetails;
 
-    @Column(name = "g_image", columnDefinition = "LONGTEXT")
-    private String generalImage;
+    @Lob
+    private String observedImage;
 
-//    @ManyToOne
-//    @JoinColumn(name = "field_code")
-//    private FieldEntity field;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "staff_id")
-//    private StaffEntity staff;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "crop_code")
-//    private CropEntity crops;
+    @ManyToMany
+    private List<FieldEntity> fields;
+
+    @ManyToMany
+    private List<CropEntity> crops;
+
+    @ManyToMany
+    private List<StaffEntity> staff;
 
 
 }

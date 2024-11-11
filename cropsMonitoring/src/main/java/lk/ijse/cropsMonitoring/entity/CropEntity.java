@@ -19,13 +19,15 @@ public class CropEntity implements SuperEntity {
     @Id
     @Column(name = "crop_code")
     private String cropCode;
-
     private String cropCommonName;
-    
     private String cropScientificName;
 
-    @Column(name = "c_image", columnDefinition = "LONGTEXT")
+    @Lob
+    @Column(name = "c_image")
     private String cropImage;
+
+//    @Column(name = "c_image", columnDefinition = "LONGTEXT")
+//    private String cropImage;
 
     private String category;
     private String cropSeason;

@@ -17,6 +17,6 @@ public class VehicleManagementDTO implements SuperDTO, VehicleResponse {
     private String status;
 
     private String remarks;
-    private String staffId;
+    private String allocatedStaffId;
 
 }

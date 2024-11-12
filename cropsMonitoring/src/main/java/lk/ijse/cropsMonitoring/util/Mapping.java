@@ -1,13 +1,7 @@
 package lk.ijse.cropsMonitoring.util;
 
-import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
-import lk.ijse.cropsMonitoring.dto.impl.EquipmentDTO;
-import lk.ijse.cropsMonitoring.dto.impl.FieldDTO;
-import lk.ijse.cropsMonitoring.dto.impl.VehicleManagementDTO;
-import lk.ijse.cropsMonitoring.entity.CropEntity;
-import lk.ijse.cropsMonitoring.entity.EquipmentEntity;
-import lk.ijse.cropsMonitoring.entity.FieldEntity;
-import lk.ijse.cropsMonitoring.entity.VehicleManagementEntity;
+import lk.ijse.cropsMonitoring.dto.impl.*;
+import lk.ijse.cropsMonitoring.entity.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,10 +25,11 @@ public class Mapping {
     public List<CropDTO> toCropsDtoList(List<CropEntity> entityList) {
         return modelMapper.map(entityList, List.class);
     }
+
     //vehicle
-public VehicleManagementDTO toVehicleDto(VehicleManagementEntity entity) {
-    return modelMapper.map(entity, VehicleManagementDTO.class);
-}
+    public VehicleManagementDTO toVehicleDto(VehicleManagementEntity entity) {
+        return modelMapper.map(entity, VehicleManagementDTO.class);
+    }
 
     public VehicleManagementEntity toVehicleEntity(VehicleManagementDTO dto) {
         return modelMapper.map(dto, VehicleManagementEntity.class);
@@ -65,6 +60,18 @@ public VehicleManagementDTO toVehicleDto(VehicleManagementEntity entity) {
     }
 
     public List<EquipmentDTO> toEquipmentDtoList(List<EquipmentEntity> entityList) {
+        return modelMapper.map(entityList, List.class);
+    }
+
+    //Staff
+    public StaffEntity toStaffEntity(StaffDTO dto) {
+        return modelMapper.map(dto, StaffEntity.class);
+    }
+    public StaffDTO toStaffDto(StaffEntity entity) {
+        return modelMapper.map(entity, StaffDTO.class);
+    }
+
+    public List<StaffDTO> toStaffDtoList(List<StaffEntity> entityList) {
         return modelMapper.map(entityList, List.class);
     }
 }

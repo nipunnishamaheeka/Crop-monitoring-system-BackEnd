@@ -31,43 +31,21 @@ public class FieldServiceImpl implements FieldService {
         this.fieldDAO = fieldDAO;
     }
 
-//    @Override
-//    public void save(FieldDTO fieldDTO) {
-//        fieldDTO.setCode(generateFieldID());
-//        FieldEntity entity = fieldDAO.save(mapping.toFieldEntity(String.valueOf(fieldDTO)));
-//        logger.info("Saved entity: {}", entity);
-//        System.out.println("entity = " + entity);
-//        if (entity.getCode() == null) {
-//            throw new DataPersistFailedException("Failed To Save");
-//        }
-//    }
 @Override
 public void save(FieldDTO fieldDTO) {
-    // Validate the fieldDTO before proceeding with saving
     if (fieldDTO == null) {
         throw new IllegalArgumentException("FieldDTO cannot be null");
     }
-
-    // Generate the unique ID for the new field
     fieldDTO.setCode(generateFieldID());
-
-    // Map the DTO to the Entity
     FieldEntity entity = mapping.toFieldEntity(fieldDTO);
-
-    // Save the entity to the database
     FieldEntity savedEntity = fieldDAO.save(entity);
-
-    // Log the saved entity
     logger.info("Saved field entity: {}", savedEntity);
     System.out.println("Saved entity = " + savedEntity);
 
-    // Check if the save operation was successful
     if (savedEntity == null || savedEntity.getCode() == null) {
         throw new DataPersistFailedException("Failed to save the field entity");
     }
 }
-
-
     @Override
     @Transactional
     public void update(String id, FieldDTO fieldDTO) {
@@ -79,13 +57,10 @@ public void save(FieldDTO fieldDTO) {
             fieldEntity.get().setFieldImage1(fieldDTO.getFieldImage1());
   fieldEntity.get().setFieldImage2(fieldDTO.getFieldImage2());
         //    fieldEntity.get().setCrops(fieldDTO.getCrops());
-
-
         }else {
             throw new DataPersistFailedException("Failed To Update");
         }
     }
-
     @Override
     public void delete(String id) {
         if (fieldDAO.existsById(id)) {
@@ -128,7 +103,7 @@ public void save(FieldDTO fieldDTO) {
                     logger.error("Failed to parse ID: {}", lastId, e);
                 }
             }
-            return "V001";
+            return "F001";
         }
     }
 }

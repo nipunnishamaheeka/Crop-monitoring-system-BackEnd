@@ -41,28 +41,28 @@ public class EquipmentServiceImpl implements EquipmentService {
     @Override
     @Transactional
     public void update(String id, EquipmentDTO equipmentDTO) {
-        Optional<EquipmentEntity> equipmentEntity = equipmentDAO.findById(id);
-        if (equipmentEntity.isPresent()) {
-            equipmentEntity.get().setName(equipmentDTO.getName());
-            equipmentEntity.get().setType(equipmentDTO.getType());
-            equipmentEntity.get().setStatus(equipmentDTO.getStatus());
-//            equipmentEntity.get().(vehicleManagementDTO.getStatus());
-//            equipmentEntity.get().setRemarks(vehicleManagementDTO.getRemarks());
-
-
-        }else {
-            throw new DataPersistFailedException("Failed To Update");
-        }
+//        Optional<EquipmentEntity> equipmentEntity = equipmentDAO.findById(id);
+//        if (equipmentEntity.isPresent()) {
+//            equipmentEntity.get().setName(equipmentDTO.getName());
+//            equipmentEntity.get().setType(equipmentDTO.getType());
+//            equipmentEntity.get().setStatus(equipmentDTO.getStatus());
+////            equipmentEntity.get().(vehicleManagementDTO.getStatus());
+////            equipmentEntity.get().setRemarks(vehicleManagementDTO.getRemarks());
+//
+//
+//        }else {
+//            throw new DataPersistFailedException("Failed To Update");
+//        }
 
     }
 
     @Override
     public void delete(String id) {
-if(equipmentDAO.existsById(id)){
-    equipmentDAO.deleteById(id);
-}else {
-    throw new DataPersistFailedException("Failed To Delete");
-}
+        if(equipmentDAO.existsById(id)){
+            equipmentDAO.deleteById(id);
+        }else {
+            throw new DataPersistFailedException("Failed To Delete");
+        }
     }
 
     @Override
@@ -96,7 +96,7 @@ if(equipmentDAO.existsById(id)){
                     logger.error("Failed to parse ID: {}", lastId, e);
                 }
             }
-            return "V001";
+            return "E001";
         }
     }
 }

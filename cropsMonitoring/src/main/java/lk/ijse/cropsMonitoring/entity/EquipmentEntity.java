@@ -15,18 +15,19 @@ public class EquipmentEntity implements SuperEntity{
     private String equipmentId;
     private String name;
 
-//    @Enumerated(EnumType.STRING)
+//   @Enumerated(EnumType.STRING)
     @Column(name = "type")
     private String type;
 
+//    @Enumerated(EnumType.STRING)
     private String status;
 
-//    @ManyToOne
-//    @JoinColumn(name = "staff_id")
-//    private StaffEntity staff;
-//
-//
-//    @ManyToOne
-//    @JoinColumn(name = "field_code")
-//    private FieldEntity code;
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private StaffEntity assignedStaff;
+
+    @OneToOne
+    @JoinColumn(name = "field_code")
+    private FieldEntity assignedField;
+
 }

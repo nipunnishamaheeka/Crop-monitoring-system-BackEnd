@@ -53,6 +53,8 @@ public class StaffEntity implements SuperEntity{
     )
     private List<VehicleManagementEntity> vehicles;
 
+    @OneToMany(mappedBy = "assignedStaff",cascade = CascadeType.ALL)
+    private List<EquipmentEntity> equipment;
 
 
 }

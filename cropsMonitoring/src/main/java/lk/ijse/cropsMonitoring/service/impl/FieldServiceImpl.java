@@ -32,6 +32,7 @@ public class FieldServiceImpl implements FieldService {
     }
 
 @Override
+@Transactional
 public void save(FieldDTO fieldDTO) {
     if (fieldDTO == null) {
         throw new IllegalArgumentException("FieldDTO cannot be null");
@@ -54,8 +55,8 @@ public void save(FieldDTO fieldDTO) {
             fieldEntity.get().setName(fieldDTO.getName());
             fieldEntity.get().setLocation(fieldDTO.getLocation());
             fieldEntity.get().setSize_of_Field(fieldDTO.getSize_of_Field());
-            fieldEntity.get().setFieldImage1(fieldDTO.getFieldImage1());
-  fieldEntity.get().setFieldImage2(fieldDTO.getFieldImage2());
+            fieldEntity.get().setFieldImage1(fieldDTO.getFieldImage1().getBytes());
+  fieldEntity.get().setFieldImage2(fieldDTO.getFieldImage2().getBytes());
         //    fieldEntity.get().setCrops(fieldDTO.getCrops());
         }else {
             throw new DataPersistFailedException("Failed To Update");

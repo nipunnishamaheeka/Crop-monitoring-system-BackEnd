@@ -19,7 +19,7 @@ public class FieldEntity  implements SuperEntity{
     private String code;
     private String name;
 
-    @Column(columnDefinition = "Point")
+//    @Column(columnDefinition = "Point")
     private String location;
     private Double size_of_Field;
 
@@ -35,10 +35,13 @@ public class FieldEntity  implements SuperEntity{
     private List<StaffEntity> staff;
 
     @Lob
-    private String fieldImage1;
+    @Column(columnDefinition = "BLOB")
+    private byte[] fieldImage1;
 
     @Lob
-    private String fieldImage2;
+    @Column(columnDefinition = "BLOB")
+    private byte[] fieldImage2;
+
 
 //    @Column(name = "f_image1", columnDefinition = "LONGTEXT")
 //    private String fieldImage1;
@@ -46,5 +49,7 @@ public class FieldEntity  implements SuperEntity{
 //    private String fieldImage2;
 
 
+    @OneToMany(mappedBy = "assignedField",cascade = CascadeType.ALL)
+    private List<EquipmentEntity> equipment;
 
 }

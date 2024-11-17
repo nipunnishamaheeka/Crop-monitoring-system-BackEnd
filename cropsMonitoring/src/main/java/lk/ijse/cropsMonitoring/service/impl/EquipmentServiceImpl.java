@@ -1,5 +1,6 @@
 package lk.ijse.cropsMonitoring.service.impl;
 
+import lk.ijse.cropsMonitoring.customObj.EquipmentErrorResponse;
 import lk.ijse.cropsMonitoring.customObj.EquipmentResponse;
 import lk.ijse.cropsMonitoring.dao.EquipmentDAO;
 import lk.ijse.cropsMonitoring.dao.FieldDAO;
@@ -10,6 +11,7 @@ import lk.ijse.cropsMonitoring.entity.FieldEntity;
 import lk.ijse.cropsMonitoring.entity.StaffEntity;
 import lk.ijse.cropsMonitoring.entity.VehicleManagementEntity;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
+import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.EquipmentService;
 import lk.ijse.cropsMonitoring.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -46,7 +48,6 @@ public class EquipmentServiceImpl implements EquipmentService {
     }
 
     @Override
-    @Transactional
     public void update(EquipmentDTO equipmentDTO,String staffId,String fieldCode,String equipmentId) {
 
         EquipmentEntity equipmentEntity = equipmentDAO.findById(equipmentId).orElse(null);
@@ -62,7 +63,7 @@ public class EquipmentServiceImpl implements EquipmentService {
                     StaffEntity staffEntity = optionalStaffEntity.get();
                     equipmentEntity.setStaff(staffEntity);
                 } else {
-                    throw new DataPersistFailedException("Failed To Update");
+                    throw new NotFoundException("Staff not found");
                 }
             }
 
@@ -81,10 +82,10 @@ public class EquipmentServiceImpl implements EquipmentService {
         if (equipmentEntity != null){
             EquipmentEntity save = equipmentDAO.save(equipmentEntity);
             if (save == null) {
-                throw new DataPersistFailedException("Failed To Update");
+                throw new DataPersistFailedException("Equipment update failed");
             }
         }else {
-            throw new DataPersistFailedException("Failed To Update");
+            throw new NotFoundException("Equipment not found");
         }
     }
 
@@ -99,11 +100,12 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public EquipmentResponse getSelectedEquipment(String equipmentId) {
-        EquipmentEntity equipmentEntity = equipmentDAO.findById(equipmentId).orElse(null);
-        if (equipmentEntity == null) {
-            return mapping.toEquipmentDto(equipmentEntity);
+        Optional<EquipmentEntity> equipment = equipmentDAO.findById(equipmentId);
+        if (equipment.isPresent()){
+            return mapping.toEquipmentDto(equipment.get());
+        }else {
+            return new EquipmentErrorResponse("Equipment not found", "404");
         }
-        throw new DataPersistFailedException("Failed To Get");
     }
 
     @Override

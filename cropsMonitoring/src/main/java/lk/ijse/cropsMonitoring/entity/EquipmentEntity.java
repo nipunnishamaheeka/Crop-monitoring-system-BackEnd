@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,10 +24,12 @@ public class EquipmentEntity implements SuperEntity{
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+    @ToString.Exclude
     private FieldEntity field;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "staff_member_id", referencedColumnName = "staff_member_id")
+    @ToString.Exclude
     private StaffEntity staff;
 
 }

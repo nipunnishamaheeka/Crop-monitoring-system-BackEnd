@@ -30,7 +30,7 @@ public class EquipmentController {
     private final EquipmentService  equipmentService;
     private static final Logger logger = LoggerFactory.getLogger(EquipmentController.class);
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping
     public ResponseEntity<?> save(@RequestBody EquipmentDTO equipmentDTO) {
         if (equipmentDTO == null) {
             return new ResponseEntity<>("Invalid data", HttpStatus.BAD_REQUEST);
@@ -47,8 +47,8 @@ public class EquipmentController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping(value = "/{equipmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateCrops(
+    @PutMapping(value = "/{equipmentId}", params = {"staffIds", "fieldCode"})
+    public ResponseEntity<?> updateEquipments(
 
             @PathVariable("equipmentId") String equipmentId,
             @RequestBody EquipmentDTO equipmentDTO,

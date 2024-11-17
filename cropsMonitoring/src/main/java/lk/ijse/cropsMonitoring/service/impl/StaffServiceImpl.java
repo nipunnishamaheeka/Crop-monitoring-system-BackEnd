@@ -1,13 +1,16 @@
 package lk.ijse.cropsMonitoring.service.impl;
 
+import lk.ijse.cropsMonitoring.customObj.StaffErrorResponse;
 import lk.ijse.cropsMonitoring.customObj.StaffResponse;
 import lk.ijse.cropsMonitoring.dao.StaffDAO;
 import lk.ijse.cropsMonitoring.dto.impl.StaffDTO;
 import lk.ijse.cropsMonitoring.entity.FieldEntity;
 import lk.ijse.cropsMonitoring.entity.StaffEntity;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
+import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.StaffService;
 import lk.ijse.cropsMonitoring.util.Mapping;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +21,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class StaffServiceImpl implements StaffService {
 
-    @Autowired
-    private Mapping mapping;
+    private final Mapping mapping;
 
     private static final Logger logger = LoggerFactory.getLogger(StaffServiceImpl.class);
-    @Autowired
-    private StaffDAO staffDAO;
+    private final StaffDAO staffDAO;
 
     @Override
     public void save(StaffDTO staffDTO) {
@@ -66,30 +69,16 @@ public class StaffServiceImpl implements StaffService {
 
 
     @Override
-    @Transactional
     public void update(String id, StaffDTO staffDTO) {
-        Optional<StaffEntity> staffEntity = staffDAO.findById(id);
-        if (staffEntity.isPresent()) {
-            staffEntity.get().setFirstName(staffDTO.getFirstName());
-            staffEntity.get().setLastName(staffDTO.getLastName());
-           // staffEntity.get().setGender(staffDTO.getGender());
-            staffEntity.get().setJoinedDate(staffDTO.getJoinedDate());
-            staffEntity.get().setDob(staffDTO.getDob());
-            staffEntity.get().setAddressLine01(staffDTO.getAddressLine01());
-            staffEntity.get().setAddressLine02(staffDTO.getAddressLine02());
-            staffEntity.get().setAddressLine03(staffDTO.getAddressLine03());
-            staffEntity.get().setAddressLine04(staffDTO.getAddressLine04());
-            staffEntity.get().setAddressLine05(staffDTO.getAddressLine05());
-            staffEntity.get().setContactNo(staffDTO.getContactNo());
-            staffEntity.get().setEmail(staffDTO.getEmail());
-           // staffEntity.get().setRole(staffDTO.getRole());
-            //staffEntity.get().setFields(staffDTO.getFieldCodes());
-            //staffEntity.get().setVehicles(staffDTO.getVehicleCodes());
-
-
-
+        Optional<StaffEntity> staff = staffDAO.findById(id);
+        if (staff.isPresent()){
+            staffDTO.setId(id);
+            StaffEntity save = staffDAO.save(mapping.toStaffEntity(staffDTO));
+            if (save == null){
+                throw new DataPersistFailedException("Staff update failed");
+            }
         }else {
-            throw new DataPersistFailedException("Failed To Update");
+            throw new NotFoundException("Staff not found");
         }
     }
 
@@ -105,11 +94,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffResponse getSelectedStaff(String id) {
-        StaffEntity staffEntity = staffDAO.findById(id).orElse(null);
-        if (staffEntity == null) {
-            return mapping.toStaffDto(staffEntity);
+        Optional<StaffEntity> staff = staffDAO.findById(id);
+        if (staff.isPresent()){
+            return mapping.toStaffDto(staff.get());
         }else {
-            throw new DataPersistFailedException("Failed To Get");
+            return new StaffErrorResponse(404, "Staff not found");
         }
     }
 

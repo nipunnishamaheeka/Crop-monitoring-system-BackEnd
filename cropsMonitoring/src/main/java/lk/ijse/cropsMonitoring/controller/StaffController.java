@@ -26,8 +26,8 @@ public class StaffController {
     private final StaffService staffService;
     private static final Logger logger = Logger.getLogger(StaffController.class.getName());
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> save(@RequestBody StaffDTO staffDTO) {
+    @PostMapping
+    public ResponseEntity<?> save(@RequestBody StaffDTO staffDTO) {
         if (staffDTO == null) {
             return new ResponseEntity<>("Invalid data", HttpStatus.BAD_REQUEST);
         }
@@ -44,10 +44,12 @@ public class StaffController {
         }
     }
 
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> updateStaff(@PathVariable("id") String id, @RequestBody StaffDTO staffDTO) {
+    @PutMapping(value = "/{staff_member_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateStaff(@PathVariable("staff_member_id") String id, @RequestBody StaffDTO staffDTO) {
+       logger.info("Updating staff with ID: " + staffDTO);
         try {
             staffService.update(id, staffDTO);
+            logger.info("Updated staff successfully: " + staffDTO.getId());
             return new ResponseEntity<>("Updated successfully", HttpStatus.OK);
         } catch (DataPersistFailedException e) {
             return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
@@ -57,8 +59,8 @@ public class StaffController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public StaffResponse getStaff(@PathVariable("id") String code) {
-        StaffResponse staff = staffService.getSelectedStaff(code);
+    public StaffResponse getStaff(@PathVariable("id") String id) {
+        StaffResponse staff = staffService.getSelectedStaff(id);
         return staff == null ? new StaffErrorResponse() : staff;
     }
 

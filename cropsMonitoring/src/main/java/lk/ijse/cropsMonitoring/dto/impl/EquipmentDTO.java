@@ -13,9 +13,13 @@ import java.util.List;
 @Data
 public class EquipmentDTO implements SuperDTO, EquipmentResponse {
     private String equipmentId;
-    private String name;
-    private String type;
+    //@NotBlank
+    private String equipmentName;
+    //@NotBlank
+//    @Pattern(regexp = "^[a-zA-Z0-9 ]+$")
+    private String equipmentType;
+//    @NotBlank
     private String status;
-    private List<String> assignedStaffId;
-    private List<String> assignedFieldCode;
+    private String fieldCode;
+    private String staffId;
 }

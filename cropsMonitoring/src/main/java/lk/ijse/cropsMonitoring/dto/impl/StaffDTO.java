@@ -1,5 +1,6 @@
 package lk.ijse.cropsMonitoring.dto.impl;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lk.ijse.cropsMonitoring.customObj.StaffErrorResponse;
 import lk.ijse.cropsMonitoring.customObj.StaffResponse;
 import lk.ijse.cropsMonitoring.dto.SuperDTO;
@@ -15,23 +16,51 @@ import java.util.List;
 public class StaffDTO implements SuperDTO, StaffResponse {
 
     private String id;
-    private String firstName;
-    private String lastName;
-    private String designation;
-    private String gender;
-    private Date joinedDate;
-    private Date dob;
-    private String addressLine01;
-    private String addressLine02;
-    private String addressLine03;
-    private String addressLine04;
-    private String addressLine05;
-    private String contactNo;
-    private String email;
-    private String role;
 
-    private List<String> fieldCodes;
-    private List<String> vehicleCodes;
+//    @NotBlank
+//    @Pattern(regexp = "^[A-Z][a-z]*$")
+    private String firstName;
+
+//    @NotBlank
+//    @Pattern(regexp = "^[A-Z][a-z]*$")
+    private String lastName;
+
+//    @NotBlank
+    private String designation;
+
+//    @NotBlank
+    private String gender;
+
+//    @NotBlank
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String joinedDate;
+
+//    @NotBlank
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String DOB;
+
+//    @NotBlank
+    private String addressLine1;
+
+//    @NotBlank
+    private String addressLine2;
+
+//    @NotBlank
+    private String addressLine3;
+
+    private String addressLine4;
+    private String addressLine5;
+
+//    @NotBlank
+//    @Pattern(regexp = "^[0-9]{10}$")
+    private String contactNo;
+
+//    @NotBlank
+//    @Email
+    private String email;
+
+//    @NotBlank
+    private String role;
 
 
 }

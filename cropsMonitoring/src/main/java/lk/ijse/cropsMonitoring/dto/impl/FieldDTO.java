@@ -6,6 +6,7 @@ import lk.ijse.cropsMonitoring.dto.SuperDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.data.geo.Point;
 
 import java.util.List;
@@ -13,12 +14,21 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class FieldDTO   implements SuperDTO, FieldResponse {
-    private String code;
-    private String name;
-    private String location;
-    private Double size_of_Field;
-    private List<String> cropCodes;
-    private List<String> staffIds;
-    private String fieldImage1;
-    private String fieldImage2;
+    private String fieldCode;
+    private String fieldName;
+//    @NotBlank
+    private Point fieldLocation;
+
+//    @Positive
+    @NotNull // Changed to @NotNull to avoid conflicts
+    private double fieldSize;
+
+    @NotNull
+    private String image1;
+
+    @NotNull
+    private String image2;
+
+    @NotNull
+    private List<String> staffId;
 }

@@ -12,16 +12,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MonitoringLogServiceDTO implements SuperDTO, MonitoringLogServiceResponse {
+public class CropDetailsDTO implements SuperDTO, MonitoringLogServiceResponse {
 
     private String logCode;
     private Date logDate;
-    private String monitoringDetails;
-
-    private String generalImage;
-
-    private List<String> fieldCodes;  // List of Field codes relevant to the log
-    private List<String> cropCodes;   // List of Crop codes relevant to the log
+    private String logDetails;
+    private String observedImage;
+    private List<String> fieldCodes;
+    private List<String> cropCodes;
     private List<String> staffIds;
 
 

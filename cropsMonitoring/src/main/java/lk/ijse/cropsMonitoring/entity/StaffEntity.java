@@ -1,11 +1,10 @@
 package lk.ijse.cropsMonitoring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lk.ijse.cropsMonitoring.dto.impl.StaffDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import java.util.Date;
 import java.util.List;
@@ -16,45 +15,54 @@ import java.util.List;
 @Table(name = "staff")
 public class StaffEntity implements SuperEntity{
     @Id
-    @Column(name = "staff_id")
+    @Column(name = "staff_member_id")
     private String id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
-
+    @Column(name = "designation")
+    private String designation;
+    @Column(name = "Gender")
+    @Enumerated(EnumType.STRING)
+    private Enums.Gender gender;
+    @Column(name = "joined_date")
+    private Date joinedDate;
+    @Column(name = "date_of_birth")
+    private Date DOB;
+    @Column(name = "address_line_1")
+    private String addressLine1;
+    @Column(name = "address_line_2")
+    private String addressLine2;
+    @Column(name = "address_line_3")
+    private String addressLine3;
+    @Column(name = "address_line_4")
+    private String addressLine4;
+    @Column(name = "address_line_5")
+    private String addressLine5;
+    @Column(name = "contact_no")
+    private String contactNo;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Enums.Role role;
 
-    @Enumerated(EnumType.STRING)
-    private Enums.Gender gender;
-
-    @Temporal(TemporalType.DATE)
-    private Date joinedDate;
-
-    @Temporal(TemporalType.DATE)
-    private Date dob;
-
-
-    private String addressLine01;
-    private String addressLine02;
-    private String addressLine03;
-    private String addressLine04;
-    private String addressLine05;
-    private String contactNo;
-    private String email;
+    @ManyToMany(mappedBy = "staff")
+    @JsonIgnore
+    private List<FieldEntity> field;
 
     @ManyToMany(mappedBy = "staff")
-    private List<FieldEntity> fields;
+    @JsonIgnore
+    private List<CropDetailsEntity> cropDetails;
 
-    @ManyToMany
-    @JoinTable(
-            name = "staff_vehicle",
-            joinColumns = @JoinColumn(name = "staff_id"),
-            inverseJoinColumns = @JoinColumn(name = "v_code")
-    )
+    @OneToOne(mappedBy = "staff",optional = true)
+    @JsonIgnore
+    private EquipmentEntity equipment;
+
+    @OneToMany(mappedBy = "staff")
+    @JsonIgnore
     private List<VehicleManagementEntity> vehicles;
-
-    @OneToMany(mappedBy = "assignedStaff",cascade = CascadeType.ALL)
-    private List<EquipmentEntity> equipment;
 
 
 }

@@ -12,22 +12,21 @@ import lombok.NoArgsConstructor;
 @Table(name = "equipment")
 public class EquipmentEntity implements SuperEntity{
     @Id
+    @Column(name = "eqiupment_id")
     private String equipmentId;
-    private String name;
-
-//   @Enumerated(EnumType.STRING)
-    @Column(name = "type")
-    private String type;
-
-//    @Enumerated(EnumType.STRING)
+    @Column(name = "equipment_name")
+    private String equipmentName;
+    @Column(name = "equipment_type")
+    private String equipmentType;
+    @Column(name = "availability_status")
     private String status;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "staff_id")
-    private StaffEntity assignedStaff;
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+    private FieldEntity field;
 
-    @ManyToOne
-    @JoinColumn(name = "field_code")
-    private FieldEntity assignedField;
+    @OneToOne(optional = true)
+    @JoinColumn(name = "staff_member_id", referencedColumnName = "staff_member_id")
+    private StaffEntity staff;
 
 }

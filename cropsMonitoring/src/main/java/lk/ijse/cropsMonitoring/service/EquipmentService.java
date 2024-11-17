@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface EquipmentService {
     void save(EquipmentDTO equipmentDTO);
-    void update(String id, EquipmentDTO equipmentDTO);
-    void delete(String id);
-    EquipmentResponse getSelectedEquipment(String id);
+    void update(EquipmentDTO equipmentDTO,String staffId,String fieldCode,String equipmentId);
+    void delete(String equipmentId);
+    EquipmentResponse getSelectedEquipment(String equipmentId);
     List<EquipmentDTO> getAll();
 
 }

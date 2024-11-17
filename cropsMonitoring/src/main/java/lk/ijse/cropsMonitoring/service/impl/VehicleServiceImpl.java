@@ -40,18 +40,18 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     @Transactional
     public void update(String id, VehicleManagementDTO vehicleManagementDTO) {
-        Optional<VehicleManagementEntity> vehicleManagementEntity = vehicleManagementDAO.findById(id);
-        if (vehicleManagementEntity.isPresent()) {
-            vehicleManagementEntity.get().setVehicleCategory(vehicleManagementDTO.getVehicleCategory());
-            vehicleManagementEntity.get().setLicensePlateNo(vehicleManagementDTO.getLicensePlateNo());
-            vehicleManagementEntity.get().setFuelType(vehicleManagementDTO.getFuelType());
-            vehicleManagementEntity.get().setStatus(vehicleManagementDTO.getStatus());
-            vehicleManagementEntity.get().setRemarks(vehicleManagementDTO.getRemarks());
-
-
-        }else {
-            throw new DataPersistFailedException("Failed To Update");
-        }
+//        Optional<VehicleManagementEntity> vehicleManagementEntity = vehicleManagementDAO.findById(id);
+//        if (vehicleManagementEntity.isPresent()) {
+//            vehicleManagementEntity.get().setVehicleCategory(vehicleManagementDTO.getVehicleCategory());
+//            vehicleManagementEntity.get().setLicensePlateNo(vehicleManagementDTO.getLicensePlateNo());
+//            vehicleManagementEntity.get().setFuelType(vehicleManagementDTO.getFuelType());
+//            vehicleManagementEntity.get().setStatus(vehicleManagementDTO.getStatus());
+//            vehicleManagementEntity.get().setRemarks(vehicleManagementDTO.getRemarks());
+//
+//
+//        }else {
+//            throw new DataPersistFailedException("Failed To Update");
+//        }
     }
 
     @Override

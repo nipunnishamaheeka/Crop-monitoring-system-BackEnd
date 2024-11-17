@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface FieldService {
     void save(FieldDTO fieldDTO);
-    void update(String id, FieldDTO fieldDTO);
-    void delete(String id);
-    FieldResponse getSelectedField(String id);
+    void update(FieldDTO fieldDTO,List<String> StaffIds);
+    void delete(String fieldCode);
+    FieldResponse getSelectedField(String fieldCode);
     List<FieldDTO> getAll();
 }

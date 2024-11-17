@@ -2,11 +2,15 @@ package lk.ijse.cropsMonitoring.service.impl;
 
 import lk.ijse.cropsMonitoring.customObj.CropResponse;
 import lk.ijse.cropsMonitoring.dao.CropDAO;
+import lk.ijse.cropsMonitoring.dao.FieldDAO;
 import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.entity.CropEntity;
+import lk.ijse.cropsMonitoring.entity.FieldEntity;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
+import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.CropService;
 import lk.ijse.cropsMonitoring.util.Mapping;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,47 +21,54 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class CropServiceImpl implements CropService {
 
-    @Autowired
-    private CropDAO cropDAO;
-
-    @Autowired
-    private Mapping mapping;
+    private final CropDAO cropDAO;
+private final FieldDAO fieldDAO;
+    private final Mapping mapping;
     private static final Logger logger = LoggerFactory.getLogger(CropServiceImpl.class);
 
     @Override
-    public void save(CropDTO cropDTO) {
-
+    public void save(CropDTO cropDTO, String fieldCode) {
         cropDTO.setCropCode(generateCropID());
-        CropEntity entity = cropDAO.save(mapping.toCropsEntity(cropDTO));
-        logger.info("Saved crop entity: {}", entity);
+        CropEntity entity = mapping.toCropsEntity(cropDTO);
+        FieldEntity fieldEntity = fieldDAO.findById(cropDTO.getFieldCode()).orElseThrow(() -> new DataPersistFailedException("Field not found"));
+        entity.setField(fieldEntity);
+        CropEntity savedEntity = cropDAO.save(entity);
+        logger.info("Saved crop entity: {}", entity + "Field Entity: " + fieldEntity);
         System.out.println("entity = " + entity);
-        if (entity.getCropCode() == null) {
+        if (savedEntity == null) {
             throw new DataPersistFailedException("Failed To Save");
         }
     }
 
     @Override
     @Transactional
-    public void update(String id, CropDTO cropDTO) {
+    public void update(String id, CropDTO cropDTO, String fieldCode) {
         Optional<CropEntity> cropEntity = cropDAO.findById(id);
         if (cropEntity.isPresent()) {
+            FieldEntity field = fieldDAO.findById(fieldCode).orElseThrow(
+                    () -> new NotFoundException("Field not found")
+            );
+            cropEntity.get().setField(field);
             cropEntity.get().setCropImage(cropDTO.getCropImage());
             cropEntity.get().setCropSeason(cropDTO.getCropSeason());
             cropEntity.get().setCategory(cropDTO.getCategory());
             cropEntity.get().setCropCommonName(cropDTO.getCropCommonName());
             cropEntity.get().setCropScientificName(cropDTO.getCropScientificName());
-          //  cropEntity.get().setField(mapping.toFieldEntity(cropDTO.getFieldCode()));
+
 
 
         }else {
-        throw new DataPersistFailedException("Failed To Update");
+        throw new NotFoundException("Failed To Update");
         }
     }
 
     @Override
     public void delete(String id) {
+
         if (cropDAO.existsById(id)) {
             cropDAO.deleteById(id);
         } else {

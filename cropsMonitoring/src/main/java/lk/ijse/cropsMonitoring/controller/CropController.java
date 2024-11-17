@@ -6,6 +6,7 @@ import lk.ijse.cropsMonitoring.dto.impl.CropDTO;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.service.CropService;
 import lk.ijse.cropsMonitoring.service.impl.CropServiceImpl;
+import lk.ijse.cropsMonitoring.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,13 +29,27 @@ public class CropController {
 
     private static final Logger logger = LoggerFactory.getLogger(CropController.class);
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<String> saveCrops(@RequestBody CropDTO cropDTO) {
-        if (cropDTO == null) {
-            return new ResponseEntity<>("Invalid crop data", HttpStatus.BAD_REQUEST);
-        }
+    @PostMapping
+    public ResponseEntity<String> saveCrops(
+            @RequestPart("cropName") String cropName,
+            @RequestPart("cropType") String cropCategory,
+            @RequestPart("cropSeason") String cropSeason,
+            @RequestPart("cropScientificName") String cropScientificName,
+            @RequestParam("cropImage") MultipartFile cropImage,
+            @RequestParam("FieldCode") String fieldCode
+    ) {
+
+        CropDTO cropDTO = new CropDTO();
+        cropDTO.setCropCommonName(cropName);
+        cropDTO.setCategory(cropCategory);
+        cropDTO.setCropSeason(cropSeason);
+        cropDTO.setCropScientificName(cropScientificName);
+        cropDTO.setCropImage(AppUtil.toBase64(cropImage));
+
+
         try {
-            cropService.save(cropDTO);
+            logger.info("Request received to save a new crop: {}", cropDTO);
+            cropService.save(cropDTO,fieldCode);
             logger.info("Crop saved: {}", cropDTO);
             return new ResponseEntity<>("Crop created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
@@ -47,22 +62,38 @@ public class CropController {
     }
 
     @PutMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> updateCrops(@PathVariable("crop_code") String id, @RequestBody CropDTO cropDTO) {
+    public ResponseEntity<String> updateCrops(
+            @RequestPart("cropName") String cropName,
+            @RequestPart("cropType") String cropCategory,
+            @RequestPart("cropSeason") String cropSeason,
+            @RequestPart("cropScientificName") String cropScientificName,
+            @RequestParam("cropImage") MultipartFile cropImage,
+            @RequestParam("FieldCode") String fieldCode,
+            @PathVariable String id
+    ) {
+        CropDTO cropDTO = new CropDTO();
+        cropDTO.setCropCommonName(cropName);
+        cropDTO.setCategory(cropCategory);
+        cropDTO.setCropSeason(cropSeason);
+        cropDTO.setCropScientificName(cropScientificName);
+        cropDTO.setCropImage(AppUtil.toBase64(cropImage));
+
         try {
-            cropService.update(id, cropDTO);
-
+            logger.info("Request received to update crop: {}", cropDTO);
+            cropService.update(id, cropDTO,fieldCode);
+            logger.info("Crop updated successfully: {}", cropDTO);
             return new ResponseEntity<>("Crop updated successfully", HttpStatus.OK);
-
-//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (DataPersistFailedException e){
+            logger.error("Failed to update crop: {}", e.getMessage());
             return new ResponseEntity<>("Crop not found", HttpStatus.NOT_FOUND);
         }catch (Exception e){
+            logger.error("Unexpected error occurred while updating crop: {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public CropResponse getCrop(@PathVariable("crop_code") String crop_code) {
+    public CropResponse getCrop(@PathVariable String crop_code) {
         CropResponse crop = cropService.getSelectedCrops(crop_code);
         return crop==null? new CropErrorResponse() :crop;
     }

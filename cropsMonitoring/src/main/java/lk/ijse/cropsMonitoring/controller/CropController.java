@@ -8,6 +8,7 @@ import lk.ijse.cropsMonitoring.service.CropService;
 import lk.ijse.cropsMonitoring.service.impl.CropServiceImpl;
 import lk.ijse.cropsMonitoring.util.AppUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,10 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/crops", method = RequestMethod.OPTIONS)
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
+@Slf4j
 public class CropController {
-    @Autowired
-    private final CropService cropService;
 
-    private static final Logger logger = LoggerFactory.getLogger(CropController.class);
+    private final CropService cropService;
 
     @PostMapping
     public ResponseEntity<String> saveCrops(
@@ -48,15 +48,15 @@ public class CropController {
 
 
         try {
-            logger.info("Request received to save a new crop: {}", cropDTO);
+            log.info("Request received to save a new crop: {}", cropDTO);
             cropService.save(cropDTO,fieldCode);
-            logger.info("Crop saved: {}", cropDTO);
+            log.info("Crop saved: {}", cropDTO);
             return new ResponseEntity<>("Crop created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
-            logger.error("Data persistence failed: {}", e.getMessage());
+            log.error("Data persistence failed: {}", e.getMessage());
             return new ResponseEntity<>("Failed to save crop", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Unexpected error occurred: {}", e.getMessage());
+            log.error("Unexpected error occurred: {}", e.getMessage());
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -69,7 +69,7 @@ public class CropController {
             @RequestPart("cropScientificName") String cropScientificName,
             @RequestParam("cropImage") MultipartFile cropImage,
             @RequestParam("FieldCode") String fieldCode,
-            @PathVariable String id
+            @PathVariable String crop_code
     ) {
         CropDTO cropDTO = new CropDTO();
         cropDTO.setCropCommonName(cropName);
@@ -79,15 +79,15 @@ public class CropController {
         cropDTO.setCropImage(AppUtil.toBase64(cropImage));
 
         try {
-            logger.info("Request received to update crop: {}", cropDTO);
-            cropService.update(id, cropDTO,fieldCode);
-            logger.info("Crop updated successfully: {}", cropDTO);
+            log.info("Request received to update crop: {}", cropDTO);
+            cropService.update(crop_code, cropDTO,fieldCode);
+            log.info("Crop updated successfully: {}", cropDTO);
             return new ResponseEntity<>("Crop updated successfully", HttpStatus.OK);
         }catch (DataPersistFailedException e){
-            logger.error("Failed to update crop: {}", e.getMessage());
+            log.error("Failed to update crop: {}", e.getMessage());
             return new ResponseEntity<>("Crop not found", HttpStatus.NOT_FOUND);
         }catch (Exception e){
-            logger.error("Unexpected error occurred while updating crop: {}", e.getMessage());
+            log.error("Unexpected error occurred while updating crop: {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

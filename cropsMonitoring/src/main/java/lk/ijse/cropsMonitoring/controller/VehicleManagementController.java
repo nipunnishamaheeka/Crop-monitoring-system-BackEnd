@@ -10,6 +10,7 @@ import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.VehicleService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,10 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/vehicle", method = RequestMethod.OPTIONS)
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
+@Slf4j
 public class VehicleManagementController {
 
     private final VehicleService vehicleService;
-
-    private static final Logger logger = LoggerFactory.getLogger(VehicleManagementController.class);
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody VehicleManagementDTO vehicleManagementDTO) {
@@ -37,13 +37,13 @@ public class VehicleManagementController {
         }
         try {
             vehicleService.save(vehicleManagementDTO);
-            logger.info("saved: {}", vehicleManagementDTO);
+            log.info("saved: {}", vehicleManagementDTO);
             return new ResponseEntity<>("created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
-            logger.error("Data persistence failed: {}", e.getMessage());
+            log.error("Data persistence failed: {}", e.getMessage());
             return new ResponseEntity<>("Failed to save", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Unexpected error occurred: {}", e.getMessage());
+            log.error("Unexpected error occurred: {}", e.getMessage());
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -51,18 +51,18 @@ public class VehicleManagementController {
     @PutMapping(value = "/{vehicleCode}", params = "staffId")
     public ResponseEntity<?> updateCrops(@RequestBody VehicleManagementDTO vehicleDTO , @RequestParam("staffId") String staffId , @PathVariable("vehicleCode") String vehicleCode) {
         try {
-            logger.info("Attempting to update vehicle: {}", vehicleDTO);
+            log.info("Attempting to update vehicle: {}", vehicleDTO);
             vehicleService.update(vehicleDTO, staffId, vehicleCode);
-            logger.info("Vehicle updated successfully: {}", vehicleDTO);
+            log.info("Vehicle updated successfully: {}", vehicleDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.error("Failed to update vehicle: {}", vehicleDTO, e);
+            log.error("Failed to update vehicle: {}", vehicleDTO, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (DataPersistFailedException e) {
-            logger.error("Failed to persist vehicle data: {}", vehicleDTO, e);
+            log.error("Failed to persist vehicle data: {}", vehicleDTO, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("An error occurred while updating the vehicle: {}", vehicleDTO, e);
+            log.error("An error occurred while updating the vehicle: {}", vehicleDTO, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

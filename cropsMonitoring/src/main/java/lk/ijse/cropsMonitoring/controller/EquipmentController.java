@@ -10,6 +10,7 @@ import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.EquipmentService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,11 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/equipment")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
+@Slf4j
 public class EquipmentController {
 
     private final EquipmentService  equipmentService;
-    private static final Logger logger = LoggerFactory.getLogger(EquipmentController.class);
+
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody EquipmentDTO equipmentDTO) {
@@ -37,13 +39,13 @@ public class EquipmentController {
         }
         try {
             equipmentService.save(equipmentDTO);
-            logger.info("saved: {}", equipmentDTO);
+            log.info("saved: {}", equipmentDTO);
             return new ResponseEntity<>("created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
-            logger.error("Data persistence failed: {}", e.getMessage());
+            log.error("Data persistence failed: {}", e.getMessage());
             return new ResponseEntity<>("Failed to save", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Unexpected error occurred: {}", e.getMessage());
+            log.error("Unexpected error occurred: {}", e.getMessage());
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -54,20 +56,20 @@ public class EquipmentController {
             @RequestBody EquipmentDTO equipmentDTO,
             @RequestParam("staffIds") String staffId,
             @RequestParam("fieldCode") String fieldCode) {
-        logger.info("Received request to update equipment: staffId={}, fieldCode={}, equipmentDTO={}", staffId, fieldCode, equipmentDTO);
+        log.info("Received request to update equipment: staffId={}, fieldCode={}, equipmentDTO={}", staffId, fieldCode, equipmentDTO);
 
         try {
             equipmentService.update(equipmentDTO, staffId, fieldCode , equipmentId);
-            logger.info("Successfully updated equipment with ID: {}", equipmentDTO.getEquipmentId());
+            log.info("Successfully updated equipment with ID: {}", equipmentDTO.getEquipmentId());
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (DataPersistFailedException e) {
-            logger.error("Failed to update equipment due to data persistence issue: {}", e.getMessage());
+            log.error("Failed to update equipment due to data persistence issue: {}", e.getMessage());
             return new ResponseEntity<>("Data persistence issue: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (NotFoundException e) {
-            logger.error("Failed to update equipment due to not found issue: {}", e.getMessage());
+            log.error("Failed to update equipment due to not found issue: {}", e.getMessage());
             return new ResponseEntity<>("Not found issue: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Unexpected error occurred while updating equipment: {}", e.getMessage(), e);
+            log.error("Unexpected error occurred while updating equipment: {}", e.getMessage(), e);
             return new ResponseEntity<>("Unexpected error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 

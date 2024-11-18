@@ -8,6 +8,7 @@ import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.FieldService;
 import lk.ijse.cropsMonitoring.util.AppUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,9 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/field")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
+@Slf4j
 public class FieldController {
     private final FieldService fieldService;
-    private static final Logger logger = LoggerFactory.getLogger(FieldController.class);
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> save(
@@ -40,7 +41,7 @@ public class FieldController {
             @RequestParam("image2") MultipartFile image2,
             @RequestParam("fieldLocationY") int fieldLocationY ){
 
-        logger.info("y"+fieldLocationY +"x"+fieldLocationX);
+        log.info("y"+fieldLocationY +"x"+fieldLocationX);
         FieldDTO fieldDTO = new FieldDTO();
         fieldDTO.setFieldName(fieldName);
         fieldDTO.setFieldLocation(new Point(fieldLocationX, fieldLocationY));
@@ -48,16 +49,16 @@ public class FieldController {
         fieldDTO.setImage1(AppUtil.toBase64(image1));
         fieldDTO.setImage2(AppUtil.toBase64(image2));
 
-        logger.info("Request received to save a new field: {}", fieldDTO);
+        log.info("Request received to save a new field: {}", fieldDTO);
         try {
             fieldService.save(fieldDTO);
-            logger.info("Field saved successfully: {}", fieldDTO);
+            log.info("Field saved successfully: {}", fieldDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
-            logger.error("Failed to save field: {}", fieldDTO, e);
+            log.error("Failed to save field: {}", fieldDTO, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Internal server error while saving field: {}", fieldDTO, e);
+            log.error("Internal server error while saving field: {}", fieldDTO, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -79,20 +80,20 @@ public class FieldController {
         fieldDTO.setFieldSize(fieldSize);
         fieldDTO.setImage1(AppUtil.toBase64(image1));
         fieldDTO.setImage2(AppUtil.toBase64(image2));
-        logger.info("Request received to update field with staff IDs {}: {}", staffIds, fieldDTO);
+        log.info("Request received to update field with staff IDs {}: {}", staffIds, fieldDTO);
         try {
             fieldService.update(fieldDTO,staffIds);
-            logger.info("Field updated successfully: {}", fieldDTO);
+            log.info("Field updated successfully: {}", fieldDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.error("Field not found for update: {}", fieldDTO, e);
+            log.error("Field not found for update: {}", fieldDTO, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (DataPersistFailedException e) {
-            logger.error("Failed to update field: {}", fieldDTO, e);
+            log.error("Failed to update field: {}", fieldDTO, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         catch (Exception e) {
-            logger.error("Internal server error while updating field: {}", fieldDTO, e);
+            log.error("Internal server error while updating field: {}", fieldDTO, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -101,13 +102,13 @@ public class FieldController {
     public ResponseEntity<?> getField(@PathVariable String fieldCode) {
         try {
             var field = fieldService.getSelectedField(fieldCode);
-            logger.info("Field retrieved successfully: {}", field);
+            log.info("Field retrieved successfully: {}", field);
             return new ResponseEntity<>(field, HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.error("Field not found with code: {}", fieldCode, e);
+            log.error("Field not found with code: {}", fieldCode, e);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.error("Internal server error while retrieving field with code: {}", fieldCode, e);
+            log.error("Internal server error while retrieving field with code: {}", fieldCode, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

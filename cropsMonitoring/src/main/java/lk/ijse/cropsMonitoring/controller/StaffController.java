@@ -9,6 +9,7 @@ import lk.ijse.cropsMonitoring.dto.impl.StaffDTO;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
 import lk.ijse.cropsMonitoring.service.StaffService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,10 +22,10 @@ import java.util.logging.Logger;
 @RequestMapping(value = "/api/v1/staff")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
+@Slf4j
 public class StaffController {
 
     private final StaffService staffService;
-    private static final Logger logger = Logger.getLogger(StaffController.class.getName());
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody StaffDTO staffDTO) {
@@ -33,23 +34,24 @@ public class StaffController {
         }
         try {
             staffService.save(staffDTO);
-            logger.info("Saved staff: " + staffDTO);
+            log.info("Saved staff: " + staffDTO);
             return new ResponseEntity<>("Created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
-            logger.severe("Data persistence failed: " + e.getMessage());
+            log.error("Data persistence failed: " + e.getMessage());
+
             return new ResponseEntity<>("Failed to save", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            logger.severe("Unexpected error occurred: " + e.getMessage());
+            log.error("Unexpected error occurred: " + e.getMessage());
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping(value = "/{staff_member_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateStaff(@PathVariable("staff_member_id") String id, @RequestBody StaffDTO staffDTO) {
-       logger.info("Updating staff with ID: " + staffDTO);
+       log.info("Updating staff with ID: " + staffDTO);
         try {
             staffService.update(id, staffDTO);
-            logger.info("Updated staff successfully: " + staffDTO.getId());
+            log.info("Updated staff successfully: " + staffDTO.getId());
             return new ResponseEntity<>("Updated successfully", HttpStatus.OK);
         } catch (DataPersistFailedException e) {
             return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
@@ -71,7 +73,7 @@ public class StaffController {
 
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
-        logger.info("Deleting staff with ID: " + id);
+        log.info("Deleting staff with ID: " + id);
         try {
             staffService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.geo.Point;
 
 import java.util.List;
@@ -31,10 +32,12 @@ public class FieldEntity  implements SuperEntity{
 
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     private List<CropEntity> crop;
 
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
     @JsonIgnore
+    @ToString.Exclude
     private List<EquipmentEntity> equipment;
 
     @ManyToMany
@@ -43,10 +46,12 @@ public class FieldEntity  implements SuperEntity{
             joinColumns = @JoinColumn(name = "field_code"),
             inverseJoinColumns = @JoinColumn(name = "staff_member_id")
     )
+    @ToString.Exclude
     private List<StaffEntity> staff;
 
     @ManyToMany(mappedBy = "field")
     @JsonIgnore
+    @ToString.Exclude
     private List<CropDetailsEntity> cropDetails;
 
 }

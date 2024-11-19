@@ -13,7 +13,6 @@ import lk.ijse.cropsMonitoring.util.Mapping;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,20 +31,33 @@ private final FieldDAO fieldDAO;
 
     @Override
     public void save(CropDTO cropDTO, String fieldCode) {
+        // Generate the crop code
         cropDTO.setCropCode(generateCropID());
+        logger.info("CropDTO received: {}", cropDTO);
+
+        // Convert CropDTO to CropEntity
         CropEntity entity = mapping.toCropsEntity(cropDTO);
-        FieldEntity fieldEntity = fieldDAO.findById(cropDTO.getFieldCode()).orElseThrow(() -> new DataPersistFailedException("Field not found"));
+
+        // Retrieve the FieldEntity associated with the fieldCode
+        FieldEntity fieldEntity = fieldDAO.findById(fieldCode)
+                .orElseThrow(() -> new DataPersistFailedException("Field not found for code: " + fieldCode));
+        logger.info("Retrieved FieldEntity: {}", fieldEntity);
+
+        // Associate the field with the crop
         entity.setField(fieldEntity);
+
+        // Save the crop entity
         CropEntity savedEntity = cropDAO.save(entity);
-        logger.info("Saved crop entity: {}", entity + "Field Entity: " + fieldEntity);
-        System.out.println("entity = " + entity);
+        logger.info("Saved CropEntity: {}", savedEntity);
+
+        // Verify the save operation
         if (savedEntity == null) {
-            throw new DataPersistFailedException("Failed To Save");
+            throw new DataPersistFailedException("Failed to save the crop entity");
         }
     }
 
+
     @Override
-    @Transactional
     public void update(String id, CropDTO cropDTO, String fieldCode) {
         Optional<CropEntity> cropEntity = cropDAO.findById(id);
         if (cropEntity.isPresent()) {

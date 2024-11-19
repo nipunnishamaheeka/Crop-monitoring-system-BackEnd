@@ -31,13 +31,15 @@ public class CropController {
 
     @PostMapping
     public ResponseEntity<String> saveCrops(
+
             @RequestPart("cropName") String cropName,
             @RequestPart("cropType") String cropCategory,
             @RequestPart("cropSeason") String cropSeason,
             @RequestPart("cropScientificName") String cropScientificName,
             @RequestParam("cropImage") MultipartFile cropImage,
-            @RequestParam("FieldCode") String fieldCode
+            @RequestParam("fieldCode") String fieldCode
     ) {
+
 
         CropDTO cropDTO = new CropDTO();
         cropDTO.setCropCommonName(cropName);
@@ -45,11 +47,13 @@ public class CropController {
         cropDTO.setCropSeason(cropSeason);
         cropDTO.setCropScientificName(cropScientificName);
         cropDTO.setCropImage(AppUtil.toBase64(cropImage));
-
+        cropDTO.setFieldCode(fieldCode);
+        System.out.println("cropDTO ekata awa= " + cropDTO);
 
         try {
             log.info("Request received to save a new crop: {}", cropDTO);
             cropService.save(cropDTO,fieldCode);
+            System.out.println("cropDTO controller= " + cropDTO);
             log.info("Crop saved: {}", cropDTO);
             return new ResponseEntity<>("Crop created successfully", HttpStatus.CREATED);
         } catch (DataPersistFailedException e) {
@@ -67,30 +71,42 @@ public class CropController {
             @RequestPart("cropType") String cropCategory,
             @RequestPart("cropSeason") String cropSeason,
             @RequestPart("cropScientificName") String cropScientificName,
+            @RequestParam(value = "fieldCode", required = true) String fieldCode,
             @RequestParam("cropImage") MultipartFile cropImage,
-            @RequestParam("FieldCode") String fieldCode,
             @PathVariable String crop_code
     ) {
-        CropDTO cropDTO = new CropDTO();
-        cropDTO.setCropCommonName(cropName);
-        cropDTO.setCategory(cropCategory);
-        cropDTO.setCropSeason(cropSeason);
-        cropDTO.setCropScientificName(cropScientificName);
-        cropDTO.setCropImage(AppUtil.toBase64(cropImage));
+        // Validate required fields
+        if (fieldCode == null || fieldCode.trim().isEmpty()) {
+            log.warn("FieldCode is missing or invalid.");
+            return new ResponseEntity<>("FieldCode is required and must not be null or empty.", HttpStatus.BAD_REQUEST);
+        }
 
         try {
+            // Populate CropDTO with provided data
+            CropDTO cropDTO = new CropDTO();
+            cropDTO.setCropCommonName(cropName);
+            cropDTO.setCategory(cropCategory);
+            cropDTO.setCropSeason(cropSeason);
+            cropDTO.setCropScientificName(cropScientificName);
+            cropDTO.setCropImage(AppUtil.toBase64(cropImage));
+            cropDTO.setFieldCode(fieldCode);
+
             log.info("Request received to update crop: {}", cropDTO);
-            cropService.update(crop_code, cropDTO,fieldCode);
+
+            // Perform the update operation
+            cropService.update(crop_code, cropDTO, fieldCode);
+
             log.info("Crop updated successfully: {}", cropDTO);
             return new ResponseEntity<>("Crop updated successfully", HttpStatus.OK);
-        }catch (DataPersistFailedException e){
+        } catch (DataPersistFailedException e) {
             log.error("Failed to update crop: {}", e.getMessage());
             return new ResponseEntity<>("Crop not found", HttpStatus.NOT_FOUND);
-        }catch (Exception e){
+        } catch (Exception e) {
             log.error("Unexpected error occurred while updating crop: {}", e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("An unexpected error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     public CropResponse getCrop(@PathVariable String crop_code) {

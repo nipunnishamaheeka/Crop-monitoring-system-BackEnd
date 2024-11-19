@@ -13,7 +13,19 @@ public class Mapping {
 
     @Autowired
     private ModelMapper modelMapper;
+    //CropDetails
+    public CropDetailsEntity convertCropDetailsDTOToCropDetails(CropDetailsDTO cropDetailsDTO){
+        return modelMapper.map(cropDetailsDTO, CropDetailsEntity.class);
+    }
 
+    public CropDetailsDTO convertCropDetailsToCropDetailsDTO(CropDetailsEntity cropDetails){
+        return modelMapper.map(cropDetails, CropDetailsDTO.class);
+    }
+
+    public List convertCropDetailsListToCropDetailsDTOList(List<CropDetailsEntity> cropDetails){
+        return modelMapper.map(cropDetails, List.class);
+    }
+//Crop
     public CropDTO toCropsDto(CropEntity entity) {
         return modelMapper.map(entity, CropDTO.class);
     }

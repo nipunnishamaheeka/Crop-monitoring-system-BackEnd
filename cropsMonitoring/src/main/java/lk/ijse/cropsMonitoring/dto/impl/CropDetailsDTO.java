@@ -1,6 +1,6 @@
 package lk.ijse.cropsMonitoring.dto.impl;
 
-import lk.ijse.cropsMonitoring.customObj.MonitoringLogServiceResponse;
+import lk.ijse.cropsMonitoring.customObj.CropDetailResponse;
 import lk.ijse.cropsMonitoring.dto.SuperDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CropDetailsDTO implements SuperDTO, MonitoringLogServiceResponse {
+public class CropDetailsDTO implements SuperDTO, CropDetailResponse {
 
     private String logCode;
     private Date logDate;

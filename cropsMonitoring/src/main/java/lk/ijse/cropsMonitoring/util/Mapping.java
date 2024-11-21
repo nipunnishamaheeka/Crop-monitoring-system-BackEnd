@@ -13,6 +13,18 @@ public class Mapping {
 
     @Autowired
     private ModelMapper modelMapper;
+//    user
+    public UserEntity convertUserDTOToUser(UserDTO userDTO){
+        return modelMapper.map(userDTO, UserEntity.class);
+    }
+
+    public UserDTO convertUserToUserDTO(UserEntity user){
+        return modelMapper.map(user, UserDTO.class);
+    }
+
+    public List convertUserListToUserDTOList(List<UserEntity> users){
+        return modelMapper.map(users, List.class);
+    }
     //CropDetails
     public CropDetailsEntity convertCropDetailsDTOToCropDetails(CropDetailsDTO cropDetailsDTO){
         return modelMapper.map(cropDetailsDTO, CropDetailsEntity.class);

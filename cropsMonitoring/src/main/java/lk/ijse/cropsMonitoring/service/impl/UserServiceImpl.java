@@ -28,6 +28,8 @@ public class UserServiceImpl implements UserService {
         Optional<UserEntity> existsUser = userDAO.findByEmail(user.getEmail());
         if (!existsUser.isPresent()) {
             UserEntity save = userDAO.save(mapping.convertUserDTOToUser(user));
+            System.out.println(userDAO);
+            System.out.println("User saved successfully with email: {}"+ user.getEmail());
             if (save == null) {
                 throw new DataPersistFailedException("User save failed");
             }
@@ -56,10 +58,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public UserDetailsService userDetailsService() {
-        return email ->
-                userDAO.findByEmail(email)
-                        .orElseThrow(()-> new NotFoundException("User Not found"));
-    }
+//    @Override
+//    public UserDetailsService userDetailsService() {
+//        return email ->
+//                userDAO.findByEmail(email)
+//                        .orElseThrow(()-> new NotFoundException("User Not found"));
+//    }
 }

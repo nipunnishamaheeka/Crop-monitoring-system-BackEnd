@@ -10,5 +10,6 @@ public interface UserService {
 
     void updateUser(UserDTO user , String email);
 
-    UserDetailsService userDetailsService();
+//    UserDetailsService userDetailsService();
+
 }

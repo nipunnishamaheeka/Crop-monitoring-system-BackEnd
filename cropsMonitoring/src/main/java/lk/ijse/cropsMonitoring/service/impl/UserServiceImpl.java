@@ -10,6 +10,7 @@ import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.UserService;
 import lk.ijse.cropsMonitoring.util.Mapping;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,10 +59,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        return email ->
-//                userDAO.findByEmail(email)
-//                        .orElseThrow(()-> new NotFoundException("User Not found"));
-//    }
+    @Override
+    public UserDetailsService userDetailsService() {
+        return email ->
+                userDAO.findByEmail(email)
+                        .orElseThrow(()-> new NotFoundException("User Not found"));
+    }
 }

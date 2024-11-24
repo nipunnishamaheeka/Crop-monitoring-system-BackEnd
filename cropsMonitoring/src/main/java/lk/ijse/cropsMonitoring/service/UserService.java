@@ -2,6 +2,7 @@ package lk.ijse.cropsMonitoring.service;
 
 import lk.ijse.cropsMonitoring.customObj.UserResponse;
 import lk.ijse.cropsMonitoring.dto.impl.UserDTO;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService {
     void saveUser(UserDTO user);
@@ -10,6 +11,6 @@ public interface UserService {
 
     void updateUser(UserDTO user , String email);
 
-//    UserDetailsService userDetailsService();
+    UserDetailsService userDetailsService();
 
 }

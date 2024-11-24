@@ -1,7 +1,9 @@
 package lk.ijse.cropsMonitoring.dto.impl;
 
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lk.ijse.cropsMonitoring.dto.SuperDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,11 +17,11 @@ public class  UserDTO implements SuperDTO {
     @Email(message = "Invalid email format")
     private String email;
 
-//    @NotBlank
-//    @Size(min = 8)
+    @NotBlank
+    @Size(min = 8)
     private String password;
 
-//    @NotNull
+    @NotNull
 //    @Pattern(regexp = "OTHER|MANAGER|ADMINISTRATIVE|SCIENTIST")
     private String role;
 }

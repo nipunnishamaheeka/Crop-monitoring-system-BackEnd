@@ -1,6 +1,7 @@
 package lk.ijse.cropsMonitoring.config;
 
 import lk.ijse.cropsMonitoring.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,13 +24,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @Autowired
-    private JWTConfig jwtConfig;
+    private final JWTConfig jwtConfig;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .authorizeRequests(
                     req ->
-                            req.requestMatchers("v1/auth/**").permitAll()
+                            req.requestMatchers("api/v1/auth/**").permitAll()
                                     .anyRequest()
                                     .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

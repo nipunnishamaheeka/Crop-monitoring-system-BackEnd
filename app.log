@@ -1,498 +1,69 @@
-2024-11-25 07:10:43.414 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h6m11s436ms449µs600ns).
-2024-11-25 07:26:16.802 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m33s260ms924µs100ns).
-2024-11-25 07:42:19.587 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 07:42:19.597 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 07:42:19.604 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-11-25 07:47:14.187 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 23640 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 07:47:14.188 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 07:47:14.189 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 07:47:15.339 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 07:47:15.421 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 7 JPA repository interfaces.
-2024-11-25 07:47:16.014 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 07:47:16.025 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 07:47:16.026 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 07:47:16.114 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 07:47:16.114 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1874 ms
-2024-11-25 07:47:16.260 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-25 07:47:16.338 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-11-25 07:47:16.340 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-11-25 07:47:16.495 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 07:47:16.665 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-25 07:47:16.683 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-11-25 07:47:16.978 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a04ca74
-2024-11-25 07:47:16.980 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-11-25 07:47:17.030 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-25 07:47:17.357 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 07:47:18.219 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-11-25 07:47:18.578 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 07:47:18.957 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
-2024-11-25 07:47:19.028 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-25 07:47:19.529 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-25 07:47:19.893 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@8588a62, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@572d1f18, org.springframework.security.web.context.SecurityContextHolderFilter@7fec354, org.springframework.security.web.header.HeaderWriterFilter@2c62f56f, org.springframework.web.filter.CorsFilter@28e12bc5, org.springframework.security.web.authentication.logout.LogoutFilter@78b20c7f, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@703947bd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5118c7fb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@792b0cad, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e00f822, org.springframework.security.web.session.SessionManagementFilter@2f053ff3, org.springframework.security.web.access.ExceptionTranslationFilter@4a6dd88e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@16dc12cf]
-2024-11-25 07:47:20.133 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
-2024-11-25 07:47:20.141 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 6.507 seconds (process running for 7.418)
-2024-11-25 07:47:46.860 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 07:47:46.862 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 07:47:46.872 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-11-25 07:47:50.311 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 8884 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 07:47:50.313 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 07:47:50.314 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 07:47:51.033 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 07:47:51.120 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 78 ms. Found 7 JPA repository interfaces.
-2024-11-25 07:47:51.648 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 07:47:51.657 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 07:47:51.657 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 07:47:51.737 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 07:47:51.738 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1377 ms
-2024-11-25 07:47:51.751 [main] ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-2024-11-25 07:47:51.777 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2024-11-25 07:47:51.787 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2024-11-25 07:47:51.795 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-11-25 07:47:51.814 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.context.ApplicationContextException: Unable to start web server
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at lk.ijse.cropsMonitoring.CropsMonitoringApplication.main(CropsMonitoringApplication.java:12)
-Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:489)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:183)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:161)
-	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:235)
-	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4886)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:846)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:241)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:428)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:918)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:485)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
-	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:489)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 54 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'token.key' in value "${token.key}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:696)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:483)
-	... 66 common frames omitted
-2024-11-25 07:49:58.993 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 22904 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 07:49:58.995 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 07:49:58.995 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 07:49:59.621 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 07:49:59.692 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 65 ms. Found 7 JPA repository interfaces.
-2024-11-25 07:50:00.158 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 07:50:00.166 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 07:50:00.166 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 07:50:00.239 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 07:50:00.240 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1196 ms
-2024-11-25 07:50:00.361 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-25 07:50:00.405 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-11-25 07:50:00.407 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-11-25 07:50:00.512 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 07:50:00.646 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-25 07:50:00.658 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-11-25 07:50:00.897 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@efe49ab
-2024-11-25 07:50:00.899 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-11-25 07:50:00.936 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-25 07:50:01.176 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 07:50:01.897 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-11-25 07:50:02.178 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 07:50:02.420 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-25 07:50:03.008 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-25 07:50:03.302 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
-
-Using generated security password: 07e4f960-f5bb-409a-8549-9bab1657a6f1
-
-This generated password is for development use only. Your security configuration must be updated before running your application in production.
-
-2024-11-25 07:50:03.400 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@640890bc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b1f32e2, org.springframework.security.web.context.SecurityContextHolderFilter@6f5ae4e1, org.springframework.security.web.header.HeaderWriterFilter@5642cd03, org.springframework.security.web.csrf.CsrfFilter@68fd0fba, org.springframework.security.web.authentication.logout.LogoutFilter@dab0a6c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1d92d132, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@657f1fc3, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@b65cc8b, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6d5a4e59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1285ec6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ecf001f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56da2437, org.springframework.security.web.access.ExceptionTranslationFilter@2a01c55, org.springframework.security.web.access.intercept.AuthorizationFilter@57ce8f63]
-2024-11-25 07:50:03.449 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
-2024-11-25 07:50:03.459 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 4.984 seconds (process running for 5.832)
-2024-11-25 07:51:49.062 [http-nio-5055-exec-2] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-25 07:51:49.062 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-11-25 07:51:49.064 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-11-25 08:31:13.929 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:31:13.939 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 08:31:13.959 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-11-25 08:31:27.140 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 10692 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 08:31:27.144 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 08:31:27.145 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 08:31:29.760 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 08:31:29.879 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 7 JPA repository interfaces.
-2024-11-25 08:31:30.666 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 08:31:30.682 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 08:31:30.682 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 08:31:30.852 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 08:31:30.852 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3544 ms
-2024-11-25 08:31:30.880 [main] ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-2024-11-25 08:31:30.936 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2024-11-25 08:31:30.958 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2024-11-25 08:31:30.984 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-11-25 08:31:31.034 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.context.ApplicationContextException: Unable to start web server
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at lk.ijse.cropsMonitoring.CropsMonitoringApplication.main(CropsMonitoringApplication.java:12)
-Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:489)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:183)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:161)
-	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:235)
-	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4886)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:846)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:241)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:428)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:918)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:485)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
-	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:489)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 54 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'token.key' in value "${token.key}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:696)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:483)
-	... 66 common frames omitted
-2024-11-25 08:31:57.149 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 21780 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 08:31:57.151 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 08:31:57.152 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 08:31:58.356 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 08:31:58.478 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 112 ms. Found 7 JPA repository interfaces.
-2024-11-25 08:31:59.353 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 08:31:59.366 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 08:31:59.366 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 08:31:59.481 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 08:31:59.482 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2248 ms
-2024-11-25 08:31:59.686 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-25 08:31:59.800 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-11-25 08:31:59.803 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-11-25 08:32:00.018 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:32:00.244 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-25 08:32:00.266 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-11-25 08:32:00.793 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38d42ab7
-2024-11-25 08:32:00.796 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-11-25 08:32:00.878 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-25 08:32:01.327 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:32:02.531 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-11-25 08:32:03.066 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:32:03.633 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
-2024-11-25 08:32:03.741 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-25 08:32:04.477 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-25 08:32:05.008 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@e00f822, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@42c7781a, org.springframework.security.web.context.SecurityContextHolderFilter@792b0cad, org.springframework.security.web.header.HeaderWriterFilter@da09b52, org.springframework.web.filter.CorsFilter@7d2d7a85, org.springframework.security.web.authentication.logout.LogoutFilter@272d0dd3, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@69c263f8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d5e0621, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@aee3d6e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5cb3c9e6, org.springframework.security.web.session.SessionManagementFilter@7fec354, org.springframework.security.web.access.ExceptionTranslationFilter@65f270e7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4f20ff8e]
-2024-11-25 08:32:05.346 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
-2024-11-25 08:32:05.356 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 9.087 seconds (process running for 10.267)
-2024-11-25 08:32:25.296 [http-nio-5055-exec-1] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-25 08:32:25.296 [http-nio-5055-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-11-25 08:32:25.298 [http-nio-5055-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2024-11-25 08:45:58.337 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:45:58.341 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 08:45:58.351 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-11-25 08:46:12.996 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 5336 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 08:46:12.999 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 08:46:12.999 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 08:46:14.141 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 08:46:14.228 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 80 ms. Found 7 JPA repository interfaces.
-2024-11-25 08:46:14.965 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 08:46:14.984 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 08:46:14.984 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 08:46:15.134 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 08:46:15.134 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2027 ms
-2024-11-25 08:46:15.277 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-25 08:46:15.321 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-11-25 08:46:15.323 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-11-25 08:46:15.432 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:46:15.561 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-25 08:46:15.576 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-11-25 08:46:15.827 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6723cce7
-2024-11-25 08:46:15.829 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-11-25 08:46:15.869 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-25 08:46:16.204 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:46:16.977 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-11-25 08:46:17.285 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:46:17.737 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
-2024-11-25 08:46:17.899 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-25 08:46:18.622 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-25 08:46:19.112 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a42da0a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5824b485, org.springframework.security.web.context.SecurityContextHolderFilter@4b6abf4e, org.springframework.security.web.header.HeaderWriterFilter@628fa8ea, org.springframework.web.filter.CorsFilter@4c2b8df7, org.springframework.security.web.authentication.logout.LogoutFilter@5697f801, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@7dc9b41a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@794daa09, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@796267e8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7734ddb8, org.springframework.security.web.session.SessionManagementFilter@7e32442d, org.springframework.security.web.access.ExceptionTranslationFilter@3a649f9a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6ddccee4]
-2024-11-25 08:46:19.445 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
-2024-11-25 08:46:19.455 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 7.156 seconds (process running for 8.015)
-2024-11-25 08:47:46.125 [http-nio-5055-exec-2] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-11-25 08:47:46.126 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2024-11-25 08:47:46.127 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2024-11-25 08:53:36.823 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:53:36.825 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 08:53:36.832 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2024-11-25 08:53:41.274 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 20152 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 08:53:41.275 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 08:53:41.276 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 08:53:41.919 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 08:53:41.992 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66 ms. Found 7 JPA repository interfaces.
-2024-11-25 08:53:42.465 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 08:53:42.473 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 08:53:42.474 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 08:53:42.563 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 08:53:42.564 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1235 ms
-2024-11-25 08:53:42.577 [main] ERROR o.s.b.w.e.tomcat.TomcatStarter - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-2024-11-25 08:53:42.603 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
-2024-11-25 08:53:42.613 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2024-11-25 08:53:42.623 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-11-25 08:53:42.645 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.context.ApplicationContextException: Unable to start web server
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:164)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:602)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
-	at lk.ijse.cropsMonitoring.CropsMonitoringApplication.main(CropsMonitoringApplication.java:12)
-Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:142)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:104)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:489)
-	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:211)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:183)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:161)
-	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'JWTConfig' defined in file [G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes\lk\ijse\cropsMonitoring\config\JWTConfig.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:245)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1352)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1189)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:560)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:210)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:173)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:168)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:153)
-	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:86)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:261)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:235)
-	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
-	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4886)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:846)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1328)
-	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1318)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
-	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
-	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:866)
-	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:241)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:428)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:918)
-	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
-	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:485)
-	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
-	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'JWTServiceIMPL': Injection of autowired dependencies failed
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:489)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1416)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:597)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
-	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1417)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:888)
-	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
-	... 54 common frames omitted
-Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'token.key' in value "${token.key}"
-	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180)
-	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126)
-	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239)
-	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210)
-	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:920)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1358)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1337)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:696)
-	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
-	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:483)
-	... 66 common frames omitted
-2024-11-25 08:53:49.261 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 13072 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
-2024-11-25 08:53:49.263 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
-2024-11-25 08:53:49.264 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
-2024-11-25 08:53:49.895 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-11-25 08:53:49.973 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 72 ms. Found 7 JPA repository interfaces.
-2024-11-25 08:53:50.453 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
-2024-11-25 08:53:50.461 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2024-11-25 08:53:50.461 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
-2024-11-25 08:53:50.534 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
-2024-11-25 08:53:50.535 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1219 ms
-2024-11-25 08:53:50.644 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-11-25 08:53:50.700 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
-2024-11-25 08:53:50.702 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
-2024-11-25 08:53:50.816 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:53:50.945 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-11-25 08:53:50.959 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2024-11-25 08:53:51.206 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60ed0b9d
-2024-11-25 08:53:51.207 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2024-11-25 08:53:51.244 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2024-11-25 08:53:51.479 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
-2024-11-25 08:53:52.205 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2024-11-25 08:53:52.517 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:53:52.855 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
-2024-11-25 08:53:52.977 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-11-25 08:53:53.410 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-11-25 08:53:53.696 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@59bdd277, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@45543b88, org.springframework.security.web.context.SecurityContextHolderFilter@4f142cbd, org.springframework.security.web.header.HeaderWriterFilter@727eae52, org.springframework.web.filter.CorsFilter@3a3fc789, org.springframework.security.web.authentication.logout.LogoutFilter@3846ba32, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@f10927f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4f1cb802, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1077a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2fad7002, org.springframework.security.web.session.SessionManagementFilter@128579a6, org.springframework.security.web.access.ExceptionTranslationFilter@1a18e18d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7734ddb8]
-2024-11-25 08:53:53.928 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
-2024-11-25 08:53:53.935 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 5.148 seconds (process running for 5.826)
-2024-11-25 08:54:31.775 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-11-25 08:54:31.777 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2024-11-25 08:54:31.825 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-26 07:35:06.637 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h46m8s766ms211µs900ns).
+2024-11-26 07:38:09.841 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26 07:38:09.844 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-26 07:38:09.852 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-26 07:38:13.123 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 25160 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
+2024-11-26 07:38:13.125 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
+2024-11-26 07:38:13.126 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
+2024-11-26 07:38:14.156 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-26 07:38:14.251 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 7 JPA repository interfaces.
+2024-11-26 07:38:14.817 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
+2024-11-26 07:38:14.829 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-26 07:38:14.830 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
+2024-11-26 07:38:14.942 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
+2024-11-26 07:38:14.943 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1770 ms
+2024-11-26 07:38:15.086 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-26 07:38:15.164 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
+2024-11-26 07:38:15.167 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-11-26 07:38:15.324 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-11-26 07:38:15.515 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-26 07:38:15.543 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-26 07:38:15.958 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@37d6dddc
+2024-11-26 07:38:15.960 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-26 07:38:16.034 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-26 07:38:16.313 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-11-26 07:38:17.177 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-11-26 07:38:17.547 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26 07:38:17.940 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
+2024-11-26 07:38:18.139 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-26 07:38:18.636 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-26 07:38:18.939 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@34f37ed4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fae8455, org.springframework.security.web.context.SecurityContextHolderFilter@2c62f56f, org.springframework.security.web.header.HeaderWriterFilter@57642552, org.springframework.web.filter.CorsFilter@16dc12cf, org.springframework.security.web.authentication.logout.LogoutFilter@3c62bae5, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@3bdc8975, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@417f7d7f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@da09b52, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5bbd8118, org.springframework.security.web.session.SessionManagementFilter@5453b15d, org.springframework.security.web.access.ExceptionTranslationFilter@452aea78, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6272936b]
+2024-11-26 07:38:19.179 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
+2024-11-26 07:38:19.186 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 6.644 seconds (process running for 7.565)
+2024-11-26 07:38:30.692 [http-nio-5055-exec-2] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-26 07:38:30.693 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-26 07:38:30.694 [http-nio-5055-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-11-26 08:01:12.871 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26 08:01:12.877 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-26 08:01:12.892 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-26 08:01:18.429 [main] INFO  l.i.c.CropsMonitoringApplication - Starting CropsMonitoringApplication using Java 17.0.12 with PID 25436 (G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd\cropsMonitoring\target\classes started by nisha in G:\GDSE\2nd SEM\AAD1\Final CourseWork\Crop-monitoring-system-BackEnd)
+2024-11-26 08:01:18.431 [main] DEBUG l.i.c.CropsMonitoringApplication - Running with Spring Boot v3.1.3, Spring v6.0.11
+2024-11-26 08:01:18.431 [main] INFO  l.i.c.CropsMonitoringApplication - The following 1 profile is active: "dev"
+2024-11-26 08:01:19.222 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-26 08:01:19.303 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 75 ms. Found 7 JPA repository interfaces.
+2024-11-26 08:01:19.781 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 5055 (http)
+2024-11-26 08:01:19.788 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-26 08:01:19.788 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.12]
+2024-11-26 08:01:19.873 [main] INFO  o.a.c.c.C.[.[.[/cropcontroller] - Initializing Spring embedded WebApplicationContext
+2024-11-26 08:01:19.874 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1406 ms
+2024-11-26 08:01:19.989 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-26 08:01:20.037 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.7.Final
+2024-11-26 08:01:20.039 [main] INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-11-26 08:01:20.146 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-11-26 08:01:20.268 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-26 08:01:20.288 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-26 08:01:20.564 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1edf71d9
+2024-11-26 08:01:20.566 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-26 08:01:20.617 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-11-26 08:01:20.864 [main] INFO  o.h.b.i.BytecodeProviderInitiator - HHH000021: Bytecode provider name : bytebuddy
+2024-11-26 08:01:21.600 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-11-26 08:01:21.931 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26 08:01:22.283 [main] DEBUG l.i.c.c.JWTConfig$$SpringCGLIB$$0 - Filter 'JWTConfig' configured for use
+2024-11-26 08:01:22.406 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-26 08:01:22.853 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-26 08:01:23.140 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a9ba6c2, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2e940dd0, org.springframework.security.web.context.SecurityContextHolderFilter@4c752425, org.springframework.security.web.header.HeaderWriterFilter@766534b0, org.springframework.web.filter.CorsFilter@24a4e9c0, org.springframework.security.web.authentication.logout.LogoutFilter@55a7f0af, lk.ijse.cropsMonitoring.config.JWTConfig$$SpringCGLIB$$0@1a82453, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@542adcfa, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3adf3670, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@609a996f, org.springframework.security.web.session.SessionManagementFilter@199549a5, org.springframework.security.web.access.ExceptionTranslationFilter@272d0dd3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7f9ebcfe]
+2024-11-26 08:01:23.364 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 5055 (http) with context path '/cropcontroller'
+2024-11-26 08:01:23.373 [main] INFO  l.i.c.CropsMonitoringApplication - Started CropsMonitoringApplication in 5.3 seconds (process running for 8.663)
+2024-11-26 11:01:58.937 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-26 11:01:59.064 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-26 11:01:59.091 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

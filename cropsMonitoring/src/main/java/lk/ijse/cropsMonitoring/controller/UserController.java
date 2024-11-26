@@ -1,8 +1,10 @@
 package lk.ijse.cropsMonitoring.controller;
 
+import jakarta.validation.Valid;
 import lk.ijse.cropsMonitoring.dto.impl.UserDTO;
 import lk.ijse.cropsMonitoring.exception.AlreadyExistsException;
 import lk.ijse.cropsMonitoring.exception.DataPersistFailedException;
+import lk.ijse.cropsMonitoring.exception.NotFoundException;
 import lk.ijse.cropsMonitoring.service.UserService;
 import lk.ijse.cropsMonitoring.util.Mapping;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,23 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } catch (DataPersistFailedException e) {
             log.error("Failed to persist user with email: {}", user.getEmail(), e);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    @GetMapping("/{email}")
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+        log.info("Fetching user with email: {}", email);
+        return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
+    @PatchMapping(value = "/{email}")
+    public ResponseEntity<?> updateUser(@Valid @RequestBody UserDTO user, @PathVariable("email") String email) {
+        log.info("Attempting to update user with email: {}", email);
+        try {
+            userService.updateUser(user, email);
+            log.info("User updated successfully with email: {}", email);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (NotFoundException e) {
+            log.warn("User not found with email: {}", email);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

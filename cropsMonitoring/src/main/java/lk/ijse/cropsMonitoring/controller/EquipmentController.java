@@ -49,31 +49,37 @@ public class EquipmentController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping(value = "/{equipmentId}", params = {"staffIds", "fieldCode"})
+    @PutMapping(value = "/{equipmentId}", params = {"staffId", "fieldCode"})
     public ResponseEntity<?> updateEquipments(
-
             @PathVariable("equipmentId") String equipmentId,
             @RequestBody EquipmentDTO equipmentDTO,
-            @RequestParam("staffIds") String staffId,
+            @RequestParam("staffId") String staffId,
             @RequestParam("fieldCode") String fieldCode) {
-        log.info("Received request to update equipment: staffId={}, fieldCode={}, equipmentDTO={}", staffId, fieldCode, equipmentDTO);
+
+        log.info("Received request to update equipment: equipmentId={}, staffId={}, fieldCode={}, equipmentDTO={}",
+                equipmentId, staffId, fieldCode, equipmentDTO);
 
         try {
-            equipmentService.update(equipmentDTO, staffId, fieldCode , equipmentId);
-            log.info("Successfully updated equipment with ID: {}", equipmentDTO.getEquipmentId());
-            return new ResponseEntity<>(HttpStatus.OK);
+            // Perform the update operation
+            equipmentService.update(equipmentDTO, staffId, fieldCode, equipmentId);
+
+            log.info("Successfully updated equipment with ID: {}", equipmentId);
+            return ResponseEntity.ok("Equipment updated successfully");
         } catch (DataPersistFailedException e) {
-            log.error("Failed to update equipment due to data persistence issue: {}", e.getMessage());
-            return new ResponseEntity<>("Data persistence issue: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            log.error("Data persistence error while updating equipment: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Data persistence error: " + e.getMessage());
         } catch (NotFoundException e) {
-            log.error("Failed to update equipment due to not found issue: {}", e.getMessage());
-            return new ResponseEntity<>("Not found issue: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+            log.error("Not found error while updating equipment: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Not found error: " + e.getMessage());
         } catch (Exception e) {
             log.error("Unexpected error occurred while updating equipment: {}", e.getMessage(), e);
-            return new ResponseEntity<>("Unexpected error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Unexpected error: " + e.getMessage());
         }
-
     }
+
 
     @GetMapping(value = "/{equipmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public EquipmentResponse getEquipment(@PathVariable String equipmentId) {

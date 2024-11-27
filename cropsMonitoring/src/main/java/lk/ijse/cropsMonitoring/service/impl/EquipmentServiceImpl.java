@@ -38,13 +38,53 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public void save(EquipmentDTO equipmentDTO) {
+//        equipmentDTO.setEquipmentId(generateID());
+//        EquipmentEntity entity = equipmentDAO.save(mapping.toEquipmentEntity(equipmentDTO));
+//        logger.info("Saved entity: {}", entity);
+//        System.out.println("entity = " + entity);
+//        if (entity.getEquipmentId() == null) {
+//            throw new DataPersistFailedException("Failed To Save");
+//        }
+        // Generate a unique equipment ID
         equipmentDTO.setEquipmentId(generateID());
-        EquipmentEntity entity = equipmentDAO.save(mapping.toEquipmentEntity(equipmentDTO));
-        logger.info("Saved entity: {}", entity);
-        System.out.println("entity = " + entity);
-        if (entity.getEquipmentId() == null) {
-            throw new DataPersistFailedException("Failed To Save");
+
+        // Create a new EquipmentEntity from the DTO
+        EquipmentEntity equipmentEntity = new EquipmentEntity();
+        equipmentEntity.setEquipmentId(equipmentDTO.getEquipmentId());
+        equipmentEntity.setEquipmentName(equipmentDTO.getEquipmentName());
+        equipmentEntity.setEquipmentType(equipmentDTO.getEquipmentType());
+        equipmentEntity.setStatus(equipmentDTO.getStatus());
+
+        // Map fieldCode to FieldEntity (if provided)
+        if (equipmentDTO.getFieldCode() != null) {
+            Optional<FieldEntity> fieldOptional = fieldDAO.findById(equipmentDTO.getFieldCode());
+            if (fieldOptional.isPresent()) {
+                equipmentEntity.setField(fieldOptional.get());
+            } else {
+                throw new NotFoundException("Field not found with code: " + equipmentDTO.getFieldCode());
+            }
         }
+
+        // Map staffId to StaffEntity (if provided)
+        if (equipmentDTO.getStaffId() != null) {
+            Optional<StaffEntity> staffOptional = staffDAO.findById(equipmentDTO.getStaffId());
+            if (staffOptional.isPresent()) {
+                equipmentEntity.setStaff(staffOptional.get());
+            } else {
+                throw new NotFoundException("Staff not found with ID: " + equipmentDTO.getStaffId());
+            }
+        }
+
+        // Save the EquipmentEntity to the database
+        EquipmentEntity savedEntity = equipmentDAO.save(equipmentEntity);
+
+        // Check if save operation was successful
+        if (savedEntity == null || savedEntity.getEquipmentId() == null) {
+            throw new DataPersistFailedException("Failed to save equipment");
+        }
+
+        logger.info("Successfully saved equipment with ID: {}", savedEntity.getEquipmentId());
+
     }
 
     @Override

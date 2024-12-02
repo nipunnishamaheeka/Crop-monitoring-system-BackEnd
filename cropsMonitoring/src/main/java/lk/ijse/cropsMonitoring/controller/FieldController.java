@@ -32,6 +32,9 @@ import java.util.List;
 public class FieldController {
     private final FieldService fieldService;
 
+
+
+
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> save(
             @RequestParam("fieldName") String fieldName,
@@ -39,6 +42,7 @@ public class FieldController {
             @RequestParam("fieldSize") double fieldSize,
             @RequestParam("image1") MultipartFile image1,
             @RequestParam("image2") MultipartFile image2,
+//            @RequestParam("staffId") List<String> staffId,
             @RequestParam("fieldLocationY") int fieldLocationY ){
 
         log.info("y"+fieldLocationY +"x"+fieldLocationX);
@@ -46,6 +50,7 @@ public class FieldController {
         fieldDTO.setFieldName(fieldName);
         fieldDTO.setFieldLocation(new Point(fieldLocationX, fieldLocationY));
         fieldDTO.setFieldSize(fieldSize);
+//        fieldDTO.setStaffId(staffId);
         fieldDTO.setImage1(AppUtil.toBase64(image1));
         fieldDTO.setImage2(AppUtil.toBase64(image2));
 

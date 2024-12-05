@@ -55,9 +55,10 @@ public class CropDetailsServiceImpl  implements CropDetailsService {
             staffDAO.findById(staffId).ifPresent(staff::add);
         }
 
-//        String logCode = AppUtil.createCropDetailsID();
-        cropDetailsDTO.setLogCode(generateLogID());
-//        cropDetailsDTO.setLogCode(logCode);
+        String logCode = generateLogID();
+//        cropDetailsDTO.setLogCode(generateLogID());
+        cropDetailsDTO.setLogCode(logCode);
+        System.out.println("logCode = " + logCode);
         CropDetailsEntity cropDetails = mapping.convertCropDetailsDTOToCropDetails(cropDetailsDTO);
         cropDetails.setField(filed);
         cropDetails.setCrop(crops);
@@ -133,19 +134,18 @@ public class CropDetailsServiceImpl  implements CropDetailsService {
         if (logCount == 0) {
             return "CD001";
         } else {
-
             String lastId = cropDetailsDAO.findLastLogCode(logCount);
             if (lastId != null && lastId.startsWith("CD")) {
-
                 try {
-                    int newId = Integer.parseInt(lastId.substring(1)) + 1;
+                    int newId = Integer.parseInt(lastId.substring(2)) + 1; // Start from index 2
                     return String.format("CD%03d", newId);
                 } catch (NumberFormatException e) {
-
                     log.error("Failed to parse crop ID: {}", lastId, e);
                 }
             }
+            // Return default if any issue occurs
             return "CD001";
         }
     }
+
 }

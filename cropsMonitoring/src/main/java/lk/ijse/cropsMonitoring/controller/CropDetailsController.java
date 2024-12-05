@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,10 +20,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/cropDetails")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 @Slf4j
 public class CropDetailsController {
     private final CropDetailsService cropDetailsService;
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @PostMapping
     public ResponseEntity<String> saveCropDetails(
             @RequestPart(value = "logDetails") String logDetails,
@@ -49,6 +52,7 @@ public class CropDetailsController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @PatchMapping(value = "/{logCode}")
     public ResponseEntity<?> updateCropDetails(
             @RequestPart(value = "logDetails") String logDetails,
@@ -83,6 +87,7 @@ public class CropDetailsController {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @DeleteMapping("/{logCode}")
     public ResponseEntity<?> deleteCropDetailsByLogCode(@PathVariable String logCode) {
         log.info("Attempting to delete crop details for logCode: {}", logCode);

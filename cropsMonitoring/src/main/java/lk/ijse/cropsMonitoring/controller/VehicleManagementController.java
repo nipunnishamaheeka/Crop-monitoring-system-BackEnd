@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.List;
 public class VehicleManagementController {
 
     private final VehicleService vehicleService;
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PostMapping
     public ResponseEntity<?> save(@RequestBody VehicleManagementDTO vehicleManagementDTO) {
         if (vehicleManagementDTO == null) {
@@ -47,7 +48,7 @@ public class VehicleManagementController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PutMapping(value = "/{vehicleCode}", params = "staffId")
     public ResponseEntity<?> updateCrops(@RequestBody VehicleManagementDTO vehicleDTO , @RequestParam("staffId") String staffId , @PathVariable("vehicleCode") String vehicleCode) {
         try {
@@ -75,7 +76,7 @@ public class VehicleManagementController {
     public List<?> getAllVehicles() {
         return vehicleService.getAll();
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @DeleteMapping(value = "/{vehicleCode}")
     public ResponseEntity<?> deleteVehicles(@PathVariable("vehicleCode") String vehicleCode) {
         System.out.println("Deleting vehicle with ID: " + vehicleCode);

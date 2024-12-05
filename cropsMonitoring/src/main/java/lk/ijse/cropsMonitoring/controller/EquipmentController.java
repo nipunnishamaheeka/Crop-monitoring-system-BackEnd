@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class EquipmentController {
 
     private final EquipmentService  equipmentService;
 
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PostMapping
     public ResponseEntity<?> save(@RequestBody EquipmentDTO equipmentDTO) {
         if (equipmentDTO == null) {
@@ -49,6 +50,7 @@ public class EquipmentController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PutMapping(value = "/{equipmentId}", params = {"staffId", "fieldCode"})
     public ResponseEntity<?> updateEquipments(
             @PathVariable("equipmentId") String equipmentId,
@@ -91,6 +93,7 @@ public class EquipmentController {
         return equipmentService.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @DeleteMapping(value = "/{equipmentId}")
     public ResponseEntity<?> deleteV(@PathVariable String equipmentId) {
         System.out.println("Deleting  with ID: " + equipmentId);

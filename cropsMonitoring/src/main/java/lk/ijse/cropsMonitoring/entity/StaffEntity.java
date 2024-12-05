@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 @NoArgsConstructor
@@ -26,8 +27,10 @@ public class StaffEntity implements SuperEntity{
     @Column(name = "Gender")
     @Enumerated(EnumType.STRING)
     private Enums.Gender gender;
-    @Column(name = "joined_date")
-    private Date joinedDate;
+//    @Column(name = "joined_date")
+//    private Date joinedDate;
+@Column(updatable = false)
+private LocalDateTime joinedDate;
     @Column(name = "date_of_birth")
     private Date DOB;
     @Column(name = "address_line_1")
@@ -48,6 +51,12 @@ public class StaffEntity implements SuperEntity{
     @Enumerated(EnumType.STRING)
     private Enums.Role role;
 
+    @PrePersist
+    public void prePersist() {
+        if (joinedDate == null) {
+            joinedDate = LocalDateTime.now();
+        }
+    }
     @ManyToMany(mappedBy = "staff")
     @JsonIgnore
     private List<FieldEntity> field;

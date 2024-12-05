@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.logging.Logger;
 public class StaffController {
 
     private final StaffService staffService;
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PostMapping
     public ResponseEntity<?> save(@RequestBody StaffDTO staffDTO) {
         if (staffDTO == null) {
@@ -45,7 +46,7 @@ public class StaffController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @PutMapping(value = "/{staff_member_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateStaff(@PathVariable("staff_member_id") String id, @RequestBody StaffDTO staffDTO) {
        log.info("Updating staff with ID: " + staffDTO);
@@ -70,7 +71,7 @@ public class StaffController {
     public List<StaffDTO> getAll() {
         return staffService.getAll();
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMINISTRATIVE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") String id) {
         log.info("Deleting staff with ID: " + id);

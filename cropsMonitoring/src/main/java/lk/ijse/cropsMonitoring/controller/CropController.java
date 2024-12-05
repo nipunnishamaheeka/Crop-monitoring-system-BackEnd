@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,10 +26,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @Slf4j
+
 public class CropController {
 
     private final CropService cropService;
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @PostMapping
     public ResponseEntity<String> saveCrops(
 
@@ -64,7 +67,7 @@ public class CropController {
             return new ResponseEntity<>("Internal server error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @PutMapping(value = "/{crop_code}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateCrops(
             @RequestPart("cropName") String cropName,
@@ -119,6 +122,7 @@ public class CropController {
         return cropService.getAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_SCIENTIST')")
     @DeleteMapping(value = "/{crop_code}")
     public ResponseEntity<Void> deleteCrops(@PathVariable("crop_code") String id) {
         System.out.println("Deleting crop with ID: " + id);
